@@ -1,0 +1,80 @@
+.file {
+  @include gc-box-shadow();
+  padding: 2rem;
+  background: $white;
+}
+
+.file__info {
+  border-top: .1rem solid $border-color;
+  margin-top: 2rem;
+  padding-top: 1rem;
+}
+
+.file__title {
+  font-size: $base-font_size;
+  line-height: 2.6rem;
+
+  width: calc(100% - 3rem);
+}
+
+.file__info {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.link--download {
+  margin-left: auto;
+  width: 3rem;
+}
+
+.meta-data {
+  color: $gc-greyblue;
+  font-size: $font-small;
+  line-height: 2.4rem;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  dd, dt {
+    margin: 0;
+  }
+
+  dt {
+    width: 30%;
+    padding-right: 2rem;
+  }
+
+  dd {
+    width: 70%;
+  }
+}
+
+.file__content {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  min-height: 15rem;
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    align-self: center;
+  }
+}
+
+.l-meta {
+  width: 100%;
+}
+
+.file__descr {
+  border-top: .1rem solid $border-color;
+  display: block;
+  width: 100%;
+  color: $gc-greyblue;
+  font-size: $font-small;
+  clear: both;
+  margin-top: 1rem;
+  padding-top: .5rem;
+}

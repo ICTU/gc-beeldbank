@@ -1,0 +1,12 @@
+<div class="breadcrumb">
+  <nav aria-label="Breadcrumb" class="breadcrumb__list">
+    <ol class="breadcrumb__list">
+
+      {% for link in links %}
+        <li><a href="{{ link.url ? link.url : '#' }}">{{link.title ? link.title : link }}</a></li>
+      {% endfor %}
+
+      <li><span class="breadcrumb__current" aria-current="page">{{ page_title }}</span></li>
+    </ol>
+  </nav>
+</div>

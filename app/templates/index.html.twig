@@ -1,0 +1,77 @@
+<html lang="nl" dir="ltr">
+
+<head>
+  {% include 'includes/head.html.twig' %}
+</head>
+
+<body class="page">
+
+
+<div class="site-container">
+
+  <header class="l-header">
+    <div class="branding">
+      <a href="index.php" class="branding__home-link">
+        <img src="/theme/logo.svg" alt="{{ site_name }} Logo" class="branding__logo">
+
+        <span class="branding__name">Gebruiker Centraal Beeldbank</span>
+      </a>
+    </div>
+
+  </header>
+
+  <main id="main">
+
+    {% set menu_items = {
+      '1': {
+        'title': 'Top',
+      }
+    } %}
+
+    <aside class="aside aside--nav">
+
+      <nav class="main-menu">
+
+        <h2 class="visually-hidden">Hoofdmenu</h2>
+
+      {% for key, item in source %}
+
+        <a href="#collection-{{ key }}">{{ item.name }}</a>
+
+      {% endfor %}
+      </nav>
+    </aside>
+
+
+    <div class="l-content">
+
+      <h1>Gebruiker Centraal Beeldbank</h1>
+
+      {% for key, item in source %}
+
+      <div id="collection-{{ key }}" class="collection">
+
+        {% if item.name %}
+          <h2 class="collection__title">{{ item.name }}</h2>
+        {% endif %}
+
+        {% if item.descr %}
+          <p class="descr">{{ item.descr }}</p>
+        {% endif %}
+
+        <div class="grid grid--col-3">
+          {% for file in item.files %}
+            {% include 'components/file.html.twig' with { 'file': file } %}
+          {% endfor %}
+        </div>
+      </div>
+        {% endfor %}
+    </div>
+
+  </main>
+</div>
+
+{% include 'includes/footer.html.twig' %}
+</div>
+
+</body>

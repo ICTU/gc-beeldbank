@@ -1,0 +1,91 @@
+body,
+html {
+  background: $gc-pantybrown-xlight;
+  margin: 0;
+}
+
+.site-container {
+  width: 100%;
+  max-width: 2200px;
+  box-shadow: 0 0 3rem rgba($black, 0.07);
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  background: $gc-pantybrown-xlight;
+}
+
+
+.branding__logo {
+  width: 14rem;
+  margin-right: 2.5rem;
+}
+
+.branding__home-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: $white;
+
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
+.branding__name {
+  display: block;
+  font-family: $font-secondary;
+  font-size: 4.4rem;
+  text-transform: uppercase;
+}
+
+.l-header {
+  @include ho-padding;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  z-index: 10;
+  position: relative;
+
+  &:before {
+    @include make-solid;
+    background: $gc-dark-blue;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 110%;
+    z-index: -1;
+    transform: rotate(-1deg);
+    margin: -2rem -1.5rem 0;
+  }
+}
+
+#main {
+  @include ho-padding;
+
+  @include bp-up(sm) {
+    display: flex;
+    padding-top: 8rem;
+
+    aside {
+      padding-right: $gutter;
+      width: 15%;
+    }
+
+    .l-content {
+      width: 85%;
+    }
+  }
+}
+
+.main-menu {
+  position: fixed;
+  width: 15%;
+
+  a {
+    display: block;
+    margin-top: 1rem;
+  }
+}
+

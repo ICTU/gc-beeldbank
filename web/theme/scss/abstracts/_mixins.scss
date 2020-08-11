@@ -1,0 +1,100 @@
+@mixin square($size) {
+  width: $size;
+  height: $size;
+}
+
+@mixin ho-padding() {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  box-sizing: border-box;
+
+  @include bp-up(sm) {
+    padding-right: 3rem;
+    padding-left: 3rem;
+  }
+}
+
+@mixin ho-container() {
+  max-width: $max-width-container;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin ho-container-content() {
+  max-width: $max-width-inner;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin backstretch($background: $color-primary) {
+  position: relative;
+  z-index: 5;
+
+  &:before {
+    content: " ";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: $background;
+    z-index: -1;
+    margin-left: -1000rem;
+    margin-right: -1000rem;
+  }
+}
+
+@mixin bp-up($breakpoint) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+
+    // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
+@mixin bp-down($breakpoint) {
+
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    $mw: map-get($breakpoints, $breakpoint) - 1px;
+
+    // Prints a media query based on the value
+    @media (max-width: $mw) {
+      @content;
+    }
+  }
+    // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
+@mixin visually-hidden() {
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip: rect(0, 0, 0, 0);
+  position: absolute;
+}
+
+@mixin gc-box-shadow($color: #000, $trans: 0.15) {
+  box-shadow: .4rem .4rem 0 rgba($color, $trans);
+}
+
+@mixin make-solid {
+  content: " ";
+  display: block;
+}

@@ -1,0 +1,11 @@
+.collection {
+
+  padding-top: 3rem;
+  border-top: .1rem solid $border-color;
+  margin-top: 5rem;
+
+  @include bp-up(lg) {
+    margin-top: 8rem;
+  }
+  
+}
