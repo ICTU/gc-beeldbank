@@ -79,6 +79,8 @@ class GetFiles {
         $files[$d]['files'][$i]['added'] = $file->getmTime();
         $files[$d]['files'][$i]['changed'] = $file->getcTime();
 
+
+
         switch ($file->getExtension()) {
           case 'jpg':
           case 'png':
@@ -92,17 +94,22 @@ class GetFiles {
               $files[$d]['files'][$i]['dimensions']['width'] = $dimensions[0];
               $files[$d]['files'][$i]['dimensions']['height'] = $dimensions[1];
 
-              // create thumb if it's a big file
+
               if ($dimensions[0] > 600 && ($file->getExtension() === 'jpg' || $file->getExtension() == 'png')) {
 
-                // check if thumb
+                // Create a thumbnail if it's a large file
+                $thumb = [];
 
-                $thumb = ScaleImage::Scale($dir->getBaseName(), $file);
+                $thumbpath = 'files/' . $dir->getBaseName() . '/thumbs/' . $file->getBaseName();
 
-                if ($thumb) {
-                  $files[$d]['files'][$i]['thumb']['name'] = $thumb['filename'];
-                  $files[$d]['files'][$i]['thumb']['path'] = $thumb['path'];
+                if($filesystem->exists($thumbpath)){
+                  $thumb['path'] = $thumbpath;
+                  $thumb['name'] = $file->getBaseName();
+                } else {
+                  $thumb = ScaleImage::Scale($dir->getBaseName(), $file);
                 }
+
+                $files[$d]['files'][$i]['thumb'] = $thumb;
               }
             }
             break;
