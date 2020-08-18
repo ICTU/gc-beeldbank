@@ -1,0 +1,1 @@
+!function(n,o,i){n(o).ready(function(){const o=n(".main-menu");function e(n){Waypoint.refreshAll()}console.log(o),n(".main-menu").waypoint(function(n){"down"===n?o.addClass("fixed"):o.removeClass("fixed")}),n(i).on("load",function(){n(i).width();e()}),n(i).on("resize",function(){n(i).width();e()})})}(jQuery,document,window);

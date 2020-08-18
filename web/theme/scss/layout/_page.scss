@@ -14,7 +14,6 @@ html {
   background: $gc-pantybrown-xlight;
 }
 
-
 .branding__logo {
   width: 14rem;
   margin-right: 2.5rem;
@@ -25,7 +24,6 @@ html {
   align-items: center;
   text-decoration: none;
   color: $white;
-
 
   &:hover,
   &:focus {
@@ -69,23 +67,26 @@ html {
     padding-top: 8rem;
 
     aside {
+      width: 25%;
+    }
+
+    aside {
       padding-right: $gutter;
+    }
+
+    .l-content {
+      width: 75%;
+    }
+  }
+
+  @include bp-up(lg) {
+    aside {
       width: 15%;
     }
 
     .l-content {
       width: 85%;
     }
-  }
-}
-
-.main-menu {
-  position: fixed;
-  width: 15%;
-
-  a {
-    display: block;
-    margin-top: 1rem;
   }
 }
 

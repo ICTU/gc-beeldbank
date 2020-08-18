@@ -1,47 +1,58 @@
-<div class="file file--type-{{ file.type }}" data-type="{{ file.type }}">
+{% if file.dimensions.size %}
+
+  {% set dimsize = ' data-size=' ~file.dimensions.size ~ '' %}
+
+{% endif %}
 
 
-  <div class="file__content">
+<div class="file file--type-{{ file.type }}" data-type="{{ file.type }}"{{ dimsize }}">
 
-    {% if file.type == 'img' %}
+<div class="file__content">
 
-      {% set path = file.path %}
+  {% if file.type == 'img' %}
 
-      {% if file.thumb %}
-        {% set path = file.thumb.path %}
-      {% endif %}
+    {% set path = file.path %}
 
-      <img src="{{ path }}">
-
-    {% elseif file.type == 'eps' or file.type == 'pdf' %}
-      <div class="file__type">{{ file.type }}</div>
-      <div class="file__type-descr">Voor drukwerk</div>
+    {% if file.thumb %}
+      {% set path = file.thumb.path %}
     {% endif %}
 
-  </div>
+    <img src="{{ path }}" alt="{{ file.name }}" class="file__image">
 
-  <div class="file__info">
-    <h3 class="file__title"> {{ file.name }}</h3>
+  {% elseif file.type == 'eps' or file.type == 'pdf' %}
+    <span class="file__type">{{ file.type }}</span>
+    <span class="file__type-descr">Voor drukwerk</span>
+  {% endif %}
 
-    <a class="link link--download" target="_blank" href="{{ file.path }}">
-      <span class="link__text">Download bestand</span>
-    </a>
+</div>
+
+<div class="file__info">
+  <h3 class="file__title"> {{ file.name }}</h3>
+
+  <a class="link link--download" target="_blank" href="{{ file.path }}">
+    <span class="link__text">Download bestand</span>
+  </a>
 
 
-    <div class="l-meta">
-      <dl class="meta-data">
-        <dt>Grootte:</dt>
-        <dd>{{ file.size }}</dd>
+  {% if file.descr %}
+    <p class="file__descr">{{ file.descr }}</p>
+  {% endif %}
 
-        {% if file.dimensions %}
-          <dt>Formaat:</dt>
-          <dd>{{ file.dimensions.width }}px x {{ file.dimensions.height }}px</dd>
-        {% endif %}
-      </dl>
 
-      {% if file.descr %}
-        <span class="file__descr">{{ file.descr }}</span>
+  <div class="l-meta">
+    <dl class="meta-data">
+      <dt>Grootte:</dt>
+      <dd>{{ file.size }}</dd>
+
+      {% if file.dimensions %}
+        <dt>Formaat:</dt>
+        <dd>{{ file.dimensions.width }}px x {{ file.dimensions.height }}px</dd>
       {% endif %}
-    </div>
+    </dl>
+
+    {% if file.typedescr %}
+      <span class="file__typedescr">{{ file.typedescr }}</span>
+    {% endif %}
   </div>
+</div>
 </div>

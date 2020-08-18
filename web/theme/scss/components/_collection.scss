@@ -7,5 +7,33 @@
   @include bp-up(lg) {
     margin-top: 8rem;
   }
-  
+
+  &--sub {
+    margin-top: 5rem;
+    padding-top: 0;
+    border: none;
+
+    + .collection--sub {
+      border-top: .1rem solid $border-color;
+      padding-top: 3rem;
+    }
+  }
+}
+
+.collection__title {
+  font-family: $font-secondary;
+
+  @include bp-up(md){
+    font-size: 4.6rem;
+    line-height: 4.6rem;
+  }
+
+  @include bp-up(lg){
+    font-size: 5.6rem;
+    line-height: 5.6rem;
+  }
+}
+
+.collection__subtitle {
+  padding-left: 3rem;
 }

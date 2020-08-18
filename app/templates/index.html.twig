@@ -37,20 +37,22 @@
         <ul class="main-menu__list">
           {% for key, item in source %}
 
-            <li class="main-menu__item"><a href="#collection-{{ key }}">{{ item.name }}</a></li>
+            <li class="main-menu__item"><a class="menu-link menu-link--main"
+                                           href="#collection-{{ key }}">{{ item.name }}</a>
 
-            {% if item.sub %}
-              <ul class="main-menu__sublist">
+              {% if item.sub %}
+                <ul class="main-menu__sublist">
 
-                {% for subkey, subitem in item.sub %}
-                  <li class="main-menu__subitem">
-                    <a class="menu-link menu-link--sub"
-                       href="#collection-{{ key }}-subcollection-{{ subkey }}">{{ subitem.name }}</a>
-                  </li>
-                {% endfor %}
-              </ul>
+                  {% for subkey, subitem in item.sub %}
+                    <li class="main-menu__subitem">
+                      <a class="menu-link menu-link--sub"
+                         href="#collection-{{ key }}-subcollection-{{ subkey }}">{{ subitem.name }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
 
-            {% endif %}
+              {% endif %}
+            </li>
           {% endfor %}
         </ul>
 

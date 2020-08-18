@@ -44,6 +44,7 @@ class GetFiles {
       ->in($dir)
       ->notPath('/files')
       ->notPath('/thumbs')
+      ->sortByName()
       ->depth('== 0');
 
     /**
@@ -61,7 +62,7 @@ class GetFiles {
         $dirdata = json_decode($dirdata, TRUE);
 
         $files[$d]['name'] = $dirdata['name'];
-        $files[$d]['descr'] = $dirdata['descr'];
+        $files[$d]['descr'] = isset($dirdata['descr']) ? $dirdata['descr'] : '';
       }
 
       // Get the files
@@ -73,7 +74,7 @@ class GetFiles {
         '*.jpg',
         '*.svg',
         '*.eps',
-        '*.pdf'
+        '*.pdf',
       ])->depth('== 0')->sortByAccessedTime();
 
 
@@ -82,7 +83,7 @@ class GetFiles {
       // Get files or directory
       foreach ($dirfiles as $file) {
         $i++;
-        $files[$d]['files'][$i] = MakeFile::Make($file, $maindest);
+        $files[$d]['files'][$i] = MakeFile::Make($file, $maindest, $dirdata);
       }
 
       /**
@@ -119,17 +120,17 @@ class GetFiles {
               '*.jpg',
               '*.svg',
               '*.eps',
-              '*.pdf'
+              '*.pdf',
             ])
             ->depth('== 0')
-            ->sortByAccessedTime();
+            ->sortByName();
 
 
           foreach ($subdirfiles as $file) {
             $fi++;
             $dirpath = $maindir . '/' . $subdirname;
 
-            $files[$d]['sub'][$si]['files'][$fi] = MakeFile::Make($file, $dirpath);
+            $files[$d]['sub'][$si]['files'][$fi] = MakeFile::Make($file, $dirpath, $dirdata);
           }
         }
       }

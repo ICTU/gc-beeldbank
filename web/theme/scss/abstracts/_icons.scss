@@ -1,16 +1,17 @@
 @font-face {
   font-family: "icons";
-  src: url('/theme/fonts/iconfont/ho-iconfont-axnye.eot');
-  src: url('/theme/fonts/iconfont/ho-iconfont-axnye.eot?#iefix') format('eot'),
-  url('/theme/fonts/iconfont/ho-iconfont-axnye.woff') format('woff'),
-  url('/theme/fonts/iconfont/ho-iconfont-axnye.ttf') format('truetype'),
-  url('/theme/fonts/iconfont/ho-iconfont-axnye.svg#icons') format('svg');
+  src: url('/theme/fonts/iconfont/ho-iconfont-i74qrj.eot');
+  src: url('/theme/fonts/iconfont/ho-iconfont-i74qrj.eot?#iefix') format('eot'),
+  url('/theme/fonts/iconfont/ho-iconfont-i74qrj.woff') format('woff'),
+  url('/theme/fonts/iconfont/ho-iconfont-i74qrj.ttf') format('truetype'),
+  url('/theme/fonts/iconfont/ho-iconfont-i74qrj.svg#icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
 $icons: (
- download: "\EA01",
+ chevron: "\EA01",
+ download: "\EA02",
 
 );
 

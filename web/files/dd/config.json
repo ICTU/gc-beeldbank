@@ -1,0 +1,16 @@
+{
+  "name": "Direct Duidelijk",
+  "descr": "Logo en ander beeldmateriaal",
+  "files": {
+    "gc-dd-logo.pdf": {
+      "name": "Logo, alles",
+      "descr": "Beeldmerk, staand en liggend"
+    },
+    "gc-dd-beeldmerk.svg": {
+      "name": "Beeldmerk, SVG"
+    },
+    "gc-dd-beeldmerk@2x.png": {
+      "name": "Beeldmerk, PNG"
+    }
+  }
+}

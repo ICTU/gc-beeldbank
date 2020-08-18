@@ -34,30 +34,43 @@ class FileSize {
 
 class MakeFile {
 
-  public static function Make($basefile, $dir) {
+  public static function Make($basefile, $dir, $dirdata) {
 
     $filesystem = new Filesystem();
     $file = [];
 
     $fileName = $basefile->getBaseName();
-
     $file['name'] = $fileName;
+
+
+    // Add more human readable name if present in json, else just use filename
+
+    if(isset($dirdata['files'])){
+      if(array_key_exists($fileName, $dirdata['files'])){
+
+        $file['name'] = isset($dirdata['files'][$fileName]['name']) ? $dirdata['files'][$fileName]['name'] : $dirdata['files'][$fileName];
+        $file['descr'] = isset($dirdata['files'][$fileName]['descr']) ? $dirdata['files'][$fileName]['descr'] : '';
+      }
+    }
+
     $file['path'] = $dir . '/' . $fileName;
     $file['size'] = FileSize::HumanReadableBytes($basefile->getSize());
 
+
+    // Add info based on description
     switch ($basefile->getExtension()) {
       case 'jpg':
       case 'png':
         $file['type'] = 'img';
-        $file['descr'] = 'Te gebruiken voor web';
+        $file['typedescr'] = 'Te gebruiken voor web';
 
+        // Get Dimensions
         $dimensions = getimagesize($basefile->getRealPath());
 
         $file['dimensions']['width'] = $dimensions[0];
         $file['dimensions']['height'] = $dimensions[1];
 
         if ($dimensions[0] > 600) {
-
           // Create a thumbnail if it's a large file
           $thumb = [];
           $thumbpath = $dir . '/thumbs/' . $fileName;
@@ -71,19 +84,30 @@ class MakeFile {
           }
 
           $file['thumb'] = $thumb;
+
+          // Add size
+          if ($dimensions[0] < 499) {
+            $file['dimensions']['size'] = 'small';
+          } elseif ($dimensions[0] > 500 && $dimensions[0] < 999){
+            $file['dimensions']['size'] = 'medium';
+          } elseif ($dimensions[0] > 1000 && $dimensions[0] < 1599){
+            $file['dimensions']['size'] = 'large';
+          } elseif ($dimensions[0] > 1600){
+            $file['dimensions']['size'] = 'x-large';
+          }
         }
         break;
       case 'svg':
         $file['type'] = 'img';
-        $file['descr'] = 'Te gebruiken voor web, vectorbestand';
+        $file['typedescr'] = 'Te gebruiken voor web, vectorbestand';
         break;
       case 'eps':
         $file['type'] = 'eps';
-        $file['descr'] = 'Te gebruiken voor drukwerk';
+        $file['typedescr'] = 'Te gebruiken voor drukwerk';
         break;
       case 'pdf':
         $file['type'] = 'pdf';
-        $file['descr'] = 'Te gebruiken voor drukwerk';
+        $file['typedescr'] = 'Te gebruiken voor of als drukwerk';
         break;
     }
 

@@ -1,6 +1,29 @@
 {
   "name": "Gebruiker Centraal ",
   "descr": "Alles voor Gebruiker Centraal",
+  "files": {
+    "gc-logo-beeldmerk-1.eps": {
+      "name": "Beeldmerk 1",
+      "descr": "Dick Leers, Donkere man, Dame kort blond haar"
+    }  ,
+    "gc-logo-beeldmerk-2.eps": {
+      "name": "Beeldmerk 2",
+      "descr": "Oudere dame, GC Dame, Oosterse man"
+    }  ,
+    "gc-logo-beeldmerk-3.eps": {
+      "name": "Beeldmerk 3",
+      "descr": "Blonde jongen, Dame getint donker lang haar, hoodie man"
+    },
+    "gc-logo-beeldmerk-4.eps": {
+      "name": "Beeldmerk 4",
+      "descr": "Rotterdammer, Man rood haar, Dame azatisch"
+    },
+    "gc-gebruiker-centraal-logo-liggend-blue-bg.png": { "name": "Blauwe achtergrond, witte tekst" },
+    "gc-logo-liggend.pdf": { "name": "Logo liggend, pdf" },
+    "gc-logo-staand.pdf": { "name": "Logo staand, pdf" },
+    "gc-logo-staand@2.5x.png": { "name": "Logo staand, png" },
+    "gc-logo-staand copy 4@2.5x.png": { "name": "Logo liggend, png" }
+  },
   "subdirs": {
     "logo": {
       "descr": "Het standaard Gebruiker Centraal logo"

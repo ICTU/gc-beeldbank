@@ -14,8 +14,7 @@
   font-size: $base-font_size;
   line-height: 2.6rem;
   padding-right: 1.5rem;
-
-
+  word-break: break-word;
   width: calc(100% - 3rem);
 }
 
@@ -23,7 +22,6 @@
   display: flex;
   flex-wrap: wrap;
 }
-
 
 .link--download {
   margin-left: auto;
@@ -43,12 +41,12 @@
   }
 
   dt {
-    width: 30%;
+    width: 35%;
     padding-right: 2rem;
   }
 
   dd {
-    width: 70%;
+    width: 65%;
   }
 }
 
@@ -56,7 +54,9 @@
   display: flex;
   align-content: center;
   justify-content: center;
+  flex-direction: column;
   min-height: 15rem;
+  text-align: center;
 
   img {
     display: block;
@@ -64,6 +64,42 @@
     height: auto;
     align-self: center;
   }
+
+  span {
+    display: block;
+  }
+
+  [data-type='eps'] & {
+    background: $gc-pantybrown-xlight;
+  }
+
+  [data-type='pdf'] & {
+    background: lighten($gc-blue-xlight, 10%);
+
+    .file__type {
+      color: $gc-blue-xlight;
+    }
+  }
+}
+
+.file__type {
+  color: $gc-pantybrown;
+  font-family: $font-secondary;
+  font-size: 4rem;
+  line-height: 4rem;
+  text-transform: uppercase;
+
+  @include bp-up(md) {
+    font-size: 6rem;
+    line-height: 6rem;
+  }
+}
+
+.file__type-descr {
+  color: $gc-greyblue;
+  font-size: 1.1rem;
+  line-height: 1.4rem;
+  font-family: $font-primary-semi;
 }
 
 .l-meta {
@@ -71,14 +107,24 @@
 }
 
 .file__descr {
+  display: block;
+  width: 100%;
+  font-size: $font-small;
+  clear: both;
+  margin-top: 0;
+  line-height: 2.2rem;
+}
+
+.file__typedescr {
   border-top: .1rem solid $border-color;
   display: block;
   width: 100%;
   color: $gc-greyblue;
-  font-size: $font-small;
+  font-size: 1.2rem;
+  line-height: 1.6rem;
   clear: both;
   margin-top: 1rem;
-  padding-top: .5rem;
+  padding-top: 1rem;
 }
 
 .link--download {
