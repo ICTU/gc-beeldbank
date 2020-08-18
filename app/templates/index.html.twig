@@ -34,11 +34,26 @@
 
         <h2 class="visually-hidden">Hoofdmenu</h2>
 
-      {% for key, item in source %}
+        <ul class="main-menu__list">
+          {% for key, item in source %}
 
-        <a href="#collection-{{ key }}">{{ item.name }}</a>
+            <li class="main-menu__item"><a href="#collection-{{ key }}">{{ item.name }}</a></li>
 
-      {% endfor %}
+            {% if item.sub %}
+              <ul class="main-menu__sublist">
+
+                {% for subkey, subitem in item.sub %}
+                  <li class="main-menu__subitem">
+                    <a class="menu-link menu-link--sub"
+                       href="#collection-{{ key }}-subcollection-{{ subkey }}">{{ subitem.name }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+
+            {% endif %}
+          {% endfor %}
+        </ul>
+
       </nav>
     </aside>
 
@@ -49,23 +64,47 @@
 
       {% for key, item in source %}
 
-      <div id="collection-{{ key }}" class="collection">
+        <div id="collection-{{ key }}" class="collection">
 
-        {% if item.name %}
-          <h2 class="collection__title">{{ item.name }}</h2>
-        {% endif %}
+          {% if item.name %}
+            <h2 class="collection__title">{{ item.name }}</h2>
+          {% endif %}
 
-        {% if item.descr %}
-          <p class="descr">{{ item.descr }}</p>
-        {% endif %}
+          {% if item.descr %}
+            <p class="descr">{{ item.descr }}</p>
+          {% endif %}
 
-        <div class="grid grid--col-3">
-          {% for file in item.files %}
-            {% include 'components/file.html.twig' with { 'file': file } %}
-          {% endfor %}
+          <div class="grid grid--col-3">
+            {% for file in item.files %}
+              {% include 'components/file.html.twig' with { 'file': file } %}
+            {% endfor %}
+          </div>
+
+          {% if item.sub %}
+
+            {% for subkey, subitem in item.sub %}
+              <div id="collection-{{ key }}-subcollection-{{ subkey }}" class="collection collection--sub">
+
+                <h3 class="collection__subtitle">{{ subitem.name }}</h3>
+
+                {% if subitem.descr %}
+                  <p>{{ subitem.descr }}</p>
+
+                {% endif %}
+
+                <div class="grid grid--col-3">
+
+                  {% for file in subitem.files %}
+                    {% include 'components/file.html.twig' with { 'file': file } %}
+                  {% endfor %}
+                </div>
+              </div>
+            {% endfor %}
+
+
+          {% endif %}
         </div>
-      </div>
-        {% endfor %}
+      {% endfor %}
     </div>
 
   </main>

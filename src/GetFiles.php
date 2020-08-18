@@ -4,6 +4,7 @@ namespace App;
 
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
+use App\MakeFile;
 
 class Files {
 
@@ -37,26 +38,34 @@ class GetFiles {
     $files = [];
     $finder = new Finder();
     $filesystem = new Filesystem();
-
-    $dirs = $finder->directories()->in($dir)->notPath('/files')->depth('== 0');
     $d = 0;
 
-    foreach ($dirs as $dir) {
-      $i = 0;
+    $dirs = $finder->directories()
+      ->in($dir)
+      ->notPath('/files')
+      ->notPath('/thumbs')
+      ->depth('== 0');
+
+    /**
+     * Get the fils
+     */
+
+    foreach ($dirs as $maindir) {
       $d++;
+      $i = 0;
 
+      $subdir = $maindir->getRealPath();
 
-      // Get subdir files
-      $subdir = $dir->getRealPath();
-      $subdirfinder = new Finder();
-
-      if ($filesystem->exists($dir->getRealPath() . "/config.json")) {
-        $dirdata = file_get_contents($dir->getRealPath() . "/config.json");
+      if ($filesystem->exists($maindir->getRealPath() . "/config.json")) {
+        $dirdata = file_get_contents($maindir->getRealPath() . "/config.json");
         $dirdata = json_decode($dirdata, TRUE);
 
         $files[$d]['name'] = $dirdata['name'];
         $files[$d]['descr'] = $dirdata['descr'];
       }
+
+      // Get the files
+      $subdirfinder = new Finder();
 
       $dirfiles = $subdirfinder->files()->in($subdir)->Name([
         '*.png',
@@ -64,72 +73,67 @@ class GetFiles {
         '*.jpg',
         '*.svg',
         '*.eps',
+        '*.pdf'
       ])->depth('== 0')->sortByAccessedTime();
 
+
+      $maindest = 'files/' . $maindir->getBaseName();
 
       // Get files or directory
       foreach ($dirfiles as $file) {
         $i++;
+        $files[$d]['files'][$i] = MakeFile::Make($file, $maindest);
+      }
 
-        $relPath = '/files/' . $dir->getBaseName() . '/' . $file->getBaseName();
+      /**
+       * Get the subdirectories & files
+       */
 
-        $files[$d]['files'][$i]['name'] = $file->getBaseName();
-        $files[$d]['files'][$i]['path'] = $relPath;
-        $files[$d]['files'][$i]['size'] = Files::HumanReadableBytes($file->getsize());
-        $files[$d]['files'][$i]['added'] = $file->getmTime();
-        $files[$d]['files'][$i]['changed'] = $file->getcTime();
+      $subsubdirfinder = new Finder();
 
-
-
-        switch ($file->getExtension()) {
-          case 'jpg':
-          case 'png':
-
-            $files[$d]['files'][$i]['type'] = 'img';
-            $files[$d]['files'][$i]['descr'] = 'Te gebruiken voor web';
-
-            $dimensions = getimagesize($file->getRealPath());
-
-            if ($dimensions) {
-              $files[$d]['files'][$i]['dimensions']['width'] = $dimensions[0];
-              $files[$d]['files'][$i]['dimensions']['height'] = $dimensions[1];
+      $subdirdirs = $subsubdirfinder->directories()
+        ->notName('thumbs')
+        ->in($maindir->getRealPath())
+        ->depth('== 0');
 
 
-              if ($dimensions[0] > 600 && ($file->getExtension() === 'jpg' || $file->getExtension() == 'png')) {
+      if ($subdirdirs->hasResults()) {
+        $si = 0;
 
-                // Create a thumbnail if it's a large file
-                $thumb = [];
+        foreach ($subdirdirs as $subdir) {
+          $si++;
+          $fi = 0;
 
-                $thumbpath = 'files/' . $dir->getBaseName() . '/thumbs/' . $file->getBaseName();
+          $subdirname = $subdir->getBaseName();
 
-                if($filesystem->exists($thumbpath)){
-                  $thumb['path'] = $thumbpath;
-                  $thumb['name'] = $file->getBaseName();
-                } else {
-                  $thumb = ScaleImage::Scale($dir->getBaseName(), $file);
-                }
+          $files[$d]['sub'][$si]['name'] = isset($dirdata['subdirs'][$subdirname]['name']) ? $dirdata['subdirs'][$subdirname]['name'] : ucfirst($subdirname);
+          $files[$d]['sub'][$si]['descr'] = isset($dirdata['subdirs'][$subdirname]['descr']) ? $dirdata['subdirs'][$subdirname]['descr'] : '';
 
-                $files[$d]['files'][$i]['thumb'] = $thumb;
-              }
-            }
-            break;
-          case 'svg':
-            $files[$d]['files'][$i]['type'] = 'img';
-            $files[$d]['files'][$i]['descr'] = 'Te gebruiken voor web, vectorbestand';
-            break;
-          case 'pdf':
-            $files[$d]['files'][$i]['type'] = 'pdf';
-            $files[$d]['files'][$i]['descr'] = 'Te gebruiken voor drukwerk, vectorbestand';
-            break;
+          $subfilefinder = new Finder();
 
-          default:
-            $files[$d]['files'][$i]['type'] = 'img';
-            break;
+          $subdirfiles = $subfilefinder->files()
+            ->in($subdir->getPath() . '/' . $subdirname)
+            ->Name([
+              '*.png',
+              '*.jpg',
+              '*.jpg',
+              '*.svg',
+              '*.eps',
+              '*.pdf'
+            ])
+            ->depth('== 0')
+            ->sortByAccessedTime();
+
+
+          foreach ($subdirfiles as $file) {
+            $fi++;
+            $dirpath = $maindir . '/' . $subdirname;
+
+            $files[$d]['sub'][$si]['files'][$fi] = MakeFile::Make($file, $dirpath);
+          }
         }
-
       }
     }
-
 
     return $files;
 

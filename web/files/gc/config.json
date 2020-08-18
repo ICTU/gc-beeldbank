@@ -1,4 +1,9 @@
 {
-  "name": "Gebruiker Centraal Logo",
-  "descr": "Het logo van Gebruiker Centraal"
+  "name": "Gebruiker Centraal ",
+  "descr": "Alles voor Gebruiker Centraal",
+  "subdirs": {
+    "logo": {
+      "descr": "Het standaard Gebruiker Centraal logo"
+    }
+  }
 }

@@ -13,6 +13,8 @@
 .file__title {
   font-size: $base-font_size;
   line-height: 2.6rem;
+  padding-right: 1.5rem;
+
 
   width: calc(100% - 3rem);
 }
@@ -77,4 +79,30 @@
   clear: both;
   margin-top: 1rem;
   padding-top: .5rem;
+}
+
+.link--download {
+  @include icon(before, download);
+  @include square(3rem);
+  @include gc-box-shadow();
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  line-height: 3rem;
+  border: .1rem solid $gc-a11y-green;
+  transition: padding .2s, border-color .2s;
+  font-size: 1.4rem;
+  background: $gc-a11y-green;
+  color: $white;
+
+  &:hover, &:focus {
+    padding-top: .1rem;
+    border-color: $gc-dark-blue;
+    color: $white;
+  }
+
+  span {
+    @include visually-hidden;
+  }
+
 }

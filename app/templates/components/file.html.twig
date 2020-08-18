@@ -1,27 +1,31 @@
-<div class="file file--type-{{ file.type }}">
+<div class="file file--type-{{ file.type }}" data-type="{{ file.type }}">
 
 
   <div class="file__content">
 
     {% if file.type == 'img' %}
 
+      {% set path = file.path %}
+
       {% if file.thumb %}
         {% set path = file.thumb.path %}
-      {% else %}
-        {% set path = file.path %}
       {% endif %}
 
       <img src="{{ path }}">
 
+    {% elseif file.type == 'eps' or file.type == 'pdf' %}
+      <div class="file__type">{{ file.type }}</div>
+      <div class="file__type-descr">Voor drukwerk</div>
     {% endif %}
 
   </div>
 
   <div class="file__info">
-
     <h3 class="file__title"> {{ file.name }}</h3>
 
-    <a class="link link--download" target="_blank" href="{{ file.path }}">Download bestand</a>
+    <a class="link link--download" target="_blank" href="{{ file.path }}">
+      <span class="link__text">Download bestand</span>
+    </a>
 
 
     <div class="l-meta">

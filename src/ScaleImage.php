@@ -16,9 +16,10 @@ class ScaleImage {
     $filesystem = new Filesystem();
     $thumb = [];
 
+
     $img = Image::make($file);
 
-    $path = 'files/' . $dir . '/thumbs';
+    $path = $dir . '/thumbs';
 
     // Make directory if not exists
     if (!$filesystem->exists($path)) {
