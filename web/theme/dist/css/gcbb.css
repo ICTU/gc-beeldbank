@@ -18,8 +18,8 @@
 
 @font-face {
   font-family: "icons";
-  src: url("/theme/fonts/iconfont/ho-iconfont-i74qrj.eot");
-  src: url("/theme/fonts/iconfont/ho-iconfont-i74qrj.eot?#iefix") format("eot"), url("/theme/fonts/iconfont/ho-iconfont-i74qrj.woff") format("woff"), url("/theme/fonts/iconfont/ho-iconfont-i74qrj.ttf") format("truetype"), url("/theme/fonts/iconfont/ho-iconfont-i74qrj.svg#icons") format("svg");
+  src: url("/theme/fonts/iconfont/ho-iconfont-3pfjvk.eot");
+  src: url("/theme/fonts/iconfont/ho-iconfont-3pfjvk.eot?#iefix") format("eot"), url("/theme/fonts/iconfont/ho-iconfont-3pfjvk.woff") format("woff"), url("/theme/fonts/iconfont/ho-iconfont-3pfjvk.ttf") format("truetype"), url("/theme/fonts/iconfont/ho-iconfont-3pfjvk.svg#icons") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -314,6 +314,8 @@ html {
 
 .collection__subtitle {
   padding-left: 3rem; }
+  .collection__subtitle + p {
+    padding-left: 3rem; }
 
 .file {
   -webkit-box-shadow: 0.4rem 0.4rem 0 rgba(0, 0, 0, 0.15);
@@ -474,55 +476,94 @@ html {
     position: fixed;
     top: 0;
     margin-top: 3rem;
-    width: 25%;
     height: 100vh;
-    overflow: auto; }
+    overflow: auto;
+    z-index: 1;
+    width: 20%; }
+    .main-menu.fixed .l-inner {
+      width: 100%; }
     @media (min-width: 1100px) {
       .main-menu.fixed {
-        width: 15%; } }
+        width: 11%; } }
 
-.main-menu__list {
+.main-menu__list,
+.main-menu__sublist {
   margin: 0;
-  padding: 0 3rem 0 0;
-  max-width: 90%;
-  line-height: 2.6rem; }
+  padding: 0; }
 
 .main-menu__item,
 .main-menu__subitem {
-  list-style: none; }
+  list-style: none;
+  display: block; }
 
-.main-menu__item + .main-menu__item {
-  border-top: 0.1rem solid #D1DFE3;
-  padding-top: 1rem;
-  margin-top: 1rem; }
-
-.menu-link {
-  text-decoration: none;
+.main-menu__item {
+  padding: .8rem 0;
   font-size: 1.6rem; }
-  .menu-link:hover, .menu-link:focus {
-    text-decoration: underline; }
-  .menu-link--main {
-    font-family: "montserratsemibold", Helvetica, Arial, sans-serif; }
-  .menu-link--sub {
-    font-size: 1.4rem; }
-    .menu-link--sub:before {
+  .main-menu__item--with-sub > a {
+    position: relative;
+    -webkit-transition: padding .2s;
+    transition: padding .2s;
+    padding-right: 3rem; }
+    .main-menu__item--with-sub > a:after {
       content: "";
       speak: none;
       font-style: normal;
       font-weight: normal;
       font-family: 'icons'; }
-    .menu-link--sub:before {
-      color: #25b34b;
-      font-size: 1rem;
-      float: left;
-      margin: .1rem 1rem 0 0;
-      -webkit-transition: margin .2s;
-      transition: margin .2s; }
-    .menu-link--sub:hover:before, .menu-link--sub:focus:before {
-      margin-right: 1.2rem; }
+    .main-menu__item--with-sub > a:after {
+      position: absolute;
+      top: .3rem;
+      right: 1rem;
+      -webkit-transform: rotate(90deg);
+              transform: rotate(90deg);
+      font-size: 1.2rem;
+      color: #c4d4d8; }
+    .main-menu__item--with-sub > a.active {
+      padding-left: .5rem; }
+      .main-menu__item--with-sub > a.active:after {
+        color: #148839; }
+  .main-menu__item + .main-menu__item {
+    border-top: 0.1rem solid #D1DFE3; }
+
+.menu-link {
+  text-decoration: none;
+  display: block;
+  line-height: 2.4rem; }
+  .menu-link:hover, .menu-link:focus, .menu-link.active {
+    text-decoration: underline; }
+  .menu-link--main {
+    font-family: "montserratsemibold", Helvetica, Arial, sans-serif; }
+  .menu-link--sub {
+    font-size: 1.4rem;
+    line-height: 2.2rem; }
 
 .main-menu__sublist {
-  margin: 1rem 0 0 1rem;
-  padding: 0; }
-  .main-menu__sublist + .main-menu__item {
-    border-top: 0.1rem solid #D1DFE3; }
+  max-height: 0;
+  overflow: hidden;
+  padding: 0;
+  -webkit-transition: max-height .3s, opacity .2s, margin .2s;
+  transition: max-height .3s, opacity .2s, margin .2s;
+  opacity: 0; }
+  .show-sub .main-menu__sublist {
+    max-height: 50rem;
+    opacity: 1;
+    margin-top: 1rem; }
+
+.main-menu__subitem {
+  position: relative;
+  padding: 0 0 0 2rem;
+  width: 100%;
+  margin: 0 0 .5rem 0; }
+  .main-menu__subitem:before {
+    content: "";
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-family: 'icons'; }
+  .main-menu__subitem:before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: .9rem;
+    color: #25b34b;
+    margin-top: -.3rem; }

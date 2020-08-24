@@ -36,4 +36,8 @@
 
 .collection__subtitle {
   padding-left: 3rem;
+
+  + p {
+    padding-left: 3rem;
+  }
 }

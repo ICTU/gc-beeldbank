@@ -11,5 +11,11 @@
     "gc-od-logo-liggend-550px.png": {"name": "Logo, liggend, 550px" },
     "gc-od-logo-liggend@2x.png": {"name": "Logo, liggend, groot" },
     "gc-od-logo-staand@2x.png": {"name": "Logo, staand, groot" }
+  },
+  "subdirs": {
+    "wvdt": {
+      "name": "Week van de Toegankelijkheid",
+      "descr": "Voor de Week van de Toegankelijkheid"
+    }
   }
 }

@@ -6,20 +6,19 @@
 
 
 const mainNav = $('.main-menu');
+const menuActive = $('.show-sub');
 
 function doNav(width) {
-  Waypoint.refreshAll();
+  Waypoint.destroyAll();
+
+  mainNav.waypoint(function (direction) {
+    if (direction === 'down') {
+      mainNav.addClass('fixed');
+    } else {
+      mainNav.removeClass('fixed');
+    }
+  });
 }
-
-console.log(mainNav);
-
-$('.main-menu').waypoint(function (direction) {
-  if (direction === 'down') {
-    mainNav.addClass('fixed');
-  } else {
-    mainNav.removeClass('fixed');
-  }
-});
 
 $(window).on('load', function () {
   var w = $(window).width();
@@ -32,6 +31,26 @@ $(window).on('resize', function () {
 
   doNav(w);
 });
+
+
+if(!menuActive.length); {
+  console.log('nope');
+  $('.main-menu__item:first-child').addClass('show-sub');
+}
+
+
+$('.menu-link--main').on('click', function(){
+  const menuItem = $(this).parent();
+
+  if(!menuItem.hasClass('show-sub')){
+    mainNav.find('.show-sub').removeClass('show-sub');
+    mainNav.find('.active').removeClass('active');
+
+    menuItem.addClass('show-sub');
+    $(this).addClass('active');
+  }
+});
+
 
 
 // =========================================================================================================

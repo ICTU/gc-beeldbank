@@ -1,3 +1,4 @@
+
 .main-menu {
   width: 100%;
   margin-top: 0;
@@ -7,41 +8,71 @@
     position: fixed;
     top: 0;
     margin-top: 3rem;
-    width: 25%;
     height: 100vh;
     overflow: auto;
+    z-index: 1;
+    width: 20%;
 
-    @include bp-up(lg) {
-      width: 15%;
+    .l-inner {
+      width: 100%;
+    }
+
+    @include bp-up(lg){
+      width: 11%;
     }
   }
 }
 
-.main-menu__list {
+.main-menu__list,
+.main-menu__sublist {
   margin: 0;
-  padding: 0 3rem 0 0;
-  max-width: 90%;
-  line-height: 2.6rem;
+  padding: 0;
 }
 
 .main-menu__item,
 .main-menu__subitem {
   list-style: none;
+  display: block;
 }
 
 .main-menu__item {
+  padding: .8rem 0;
+  font-size: $font-smaller;
+
+  &--with-sub > a {
+    @include icon(after, chevron);
+    position: relative;
+    transition: padding .2s;
+    padding-right: 3rem;
+
+    &:after {
+      position: absolute;
+      top: .3rem;
+      right: 1rem;
+      transform: rotate(90deg);
+      font-size: 1.2rem;
+      color: lighten($gc-greyblue, 40%)
+    }
+
+    &.active {
+      padding-left: .5rem;
+      &:after {
+        color: $gc-a11y-green;
+      }
+    }
+  }
+
   + .main-menu__item {
     border-top: .1rem solid $border-color;
-    padding-top: 1rem;
-    margin-top: 1rem;
   }
 }
 
 .menu-link {
   text-decoration: none;
-  font-size: $font-smaller;
+  display: block;
+  line-height: 2.4rem;
 
-  &:hover, &:focus {
+  &:hover, &:focus, &.active {
     text-decoration: underline;
   }
 
@@ -50,30 +81,39 @@
   }
 
   &--sub {
-    @include icon(before, chevron);
     font-size: $font-small;
-
-    &:before {
-      color: $gc-green;
-      font-size: 1rem;
-      float: left;
-      margin: .1rem 1rem 0 0;
-      transition: margin .2s;
-    }
-
-    &:hover, &:focus {
-      &:before {
-        margin-right: 1.2rem;
-      }
-    }
+    line-height: 2.2rem;
   }
+
 }
 
 .main-menu__sublist {
-  margin: 1rem 0 0 1rem;
+  max-height: 0;
+  overflow: hidden;
   padding: 0;
+  transition: max-height .3s, opacity .2s, margin .2s;
+  opacity: 0;
 
-  + .main-menu__item {
-    border-top: .1rem solid $border-color;
+  .show-sub & {
+    max-height: 50rem;
+    opacity: 1;
+    margin-top: 1rem;
+  }
+}
+
+.main-menu__subitem {
+  @include icon(before, chevron);
+  position: relative;
+  padding: 0 0 0 2rem;
+  width: 100%;
+  margin: 0 0 .5rem 0;
+
+  &:before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: .9rem;
+    color: $gc-green;
+    margin-top: -.3rem;
   }
 }

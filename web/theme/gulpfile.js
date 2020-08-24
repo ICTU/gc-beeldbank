@@ -88,7 +88,7 @@ function js(done) {
 function styles(done) {
 
   gulp
-    .src('scss/*.scss')
+    .src('scss/**/*.scss')
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer('last 2 version'))
