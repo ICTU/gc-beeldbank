@@ -45,8 +45,8 @@ class MakeFile {
 
     // Add more human readable name if present in json, else just use filename
 
-    if(isset($dirdata['files'])){
-      if(array_key_exists($fileName, $dirdata['files'])){
+    if (isset($dirdata['files'])) {
+      if (array_key_exists($fileName, $dirdata['files'])) {
 
         $file['name'] = isset($dirdata['files'][$fileName]['name']) ? $dirdata['files'][$fileName]['name'] : $dirdata['files'][$fileName];
         $file['descr'] = isset($dirdata['files'][$fileName]['descr']) ? $dirdata['files'][$fileName]['descr'] : '';
@@ -88,11 +88,14 @@ class MakeFile {
           // Add size
           if ($dimensions[0] < 499) {
             $file['dimensions']['size'] = 'small';
-          } elseif ($dimensions[0] > 500 && $dimensions[0] < 999){
+          }
+          elseif ($dimensions[0] > 500 && $dimensions[0] < 999) {
             $file['dimensions']['size'] = 'medium';
-          } elseif ($dimensions[0] > 1000 && $dimensions[0] < 1599){
+          }
+          elseif ($dimensions[0] > 1000 && $dimensions[0] < 1599) {
             $file['dimensions']['size'] = 'large';
-          } elseif ($dimensions[0] > 1600){
+          }
+          elseif ($dimensions[0] > 1600) {
             $file['dimensions']['size'] = 'x-large';
           }
         }
@@ -108,6 +111,10 @@ class MakeFile {
       case 'pdf':
         $file['type'] = 'pdf';
         $file['typedescr'] = 'Te gebruiken voor of als drukwerk';
+        break;
+      case 'ai':
+        $file['type'] = 'ai';
+        $file['typedescr'] = 'Bronbestand voor ontwerpen';
         break;
     }
 

@@ -22,6 +22,9 @@
   {% elseif file.type == 'eps' or file.type == 'pdf' %}
     <span class="file__type">{{ file.type }}</span>
     <span class="file__type-descr">Voor drukwerk</span>
+  {% elseif file.type == 'ai' %}
+    <span class="file__type">{{ file.type }}</span>
+    <span class="file__type-descr">Bronbestand van het ontwerp</span>
   {% endif %}
 
 </div>

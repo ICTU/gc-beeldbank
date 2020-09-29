@@ -80,6 +80,14 @@
       color: $gc-blue-xlight;
     }
   }
+
+  [data-type='ai'] & {
+    background: lighten($gc-pink-lighter, 30%);
+
+    .file__type {
+      color: $gc-pink-lighter;
+    }
+  }
 }
 
 .file__type {

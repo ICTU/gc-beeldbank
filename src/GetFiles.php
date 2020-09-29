@@ -75,6 +75,7 @@ class GetFiles {
         '*.svg',
         '*.eps',
         '*.pdf',
+        '*.ai'
       ])->depth('== 0')->sortByAccessedTime();
 
 
@@ -121,6 +122,7 @@ class GetFiles {
               '*.svg',
               '*.eps',
               '*.pdf',
+              '*.ai'
             ])
             ->depth('== 0')
             ->sortByName();

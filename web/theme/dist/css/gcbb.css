@@ -161,7 +161,8 @@ html {
   text-decoration: none;
   color: #fff; }
   .branding__home-link:hover, .branding__home-link:focus {
-    text-decoration: underline; }
+    text-decoration: underline;
+    color: #fff; }
 
 .branding__name {
   display: block;
@@ -392,6 +393,10 @@ html {
     background: #f1f5f6; }
     [data-type='pdf'] .file__content .file__type {
       color: #D1DFE3; }
+  [data-type='ai'] .file__content {
+    background: #fdf0f6; }
+    [data-type='ai'] .file__content .file__type {
+      color: #E86CA8; }
 
 .file__type {
   color: #e8d8c7;
