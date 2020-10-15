@@ -51,6 +51,16 @@ class GetFiles {
      * Get the fils
      */
 
+    $extensions = [
+      '*.png',
+      '*.jpg',
+      '*.jpeg',
+      '*.svg',
+      '*.eps',
+      '*.pdf',
+      '*.ai',
+    ];
+
     foreach ($dirs as $maindir) {
       $d++;
       $i = 0;
@@ -68,15 +78,11 @@ class GetFiles {
       // Get the files
       $subdirfinder = new Finder();
 
-      $dirfiles = $subdirfinder->files()->in($subdir)->Name([
-        '*.png',
-        '*.jpg',
-        '*.jpg',
-        '*.svg',
-        '*.eps',
-        '*.pdf',
-        '*.ai'
-      ])->depth('== 0')->sortByAccessedTime();
+      $dirfiles = $subdirfinder->files()
+        ->in($subdir)
+        ->Name($extensions)
+        ->depth('== 0')
+        ->sortByAccessedTime();
 
 
       $maindest = 'files/' . $maindir->getBaseName();
@@ -115,15 +121,7 @@ class GetFiles {
 
           $subdirfiles = $subfilefinder->files()
             ->in($subdir->getPath() . '/' . $subdirname)
-            ->Name([
-              '*.png',
-              '*.jpg',
-              '*.jpg',
-              '*.svg',
-              '*.eps',
-              '*.pdf',
-              '*.ai'
-            ])
+            ->Name($extensions)
             ->depth('== 0')
             ->sortByName();
 

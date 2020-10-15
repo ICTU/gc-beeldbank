@@ -34,7 +34,6 @@ $(window).on('resize', function () {
 
 
 if(!menuActive.length); {
-  console.log('nope');
   $('.main-menu__item:first-child').addClass('show-sub');
 }
 

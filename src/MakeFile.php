@@ -42,12 +42,9 @@ class MakeFile {
     $fileName = $basefile->getBaseName();
     $file['name'] = $fileName;
 
-
     // Add more human readable name if present in json, else just use filename
-
     if (isset($dirdata['files'])) {
       if (array_key_exists($fileName, $dirdata['files'])) {
-
         $file['name'] = isset($dirdata['files'][$fileName]['name']) ? $dirdata['files'][$fileName]['name'] : $dirdata['files'][$fileName];
         $file['descr'] = isset($dirdata['files'][$fileName]['descr']) ? $dirdata['files'][$fileName]['descr'] : '';
       }
@@ -60,6 +57,7 @@ class MakeFile {
     // Add info based on description
     switch ($basefile->getExtension()) {
       case 'jpg':
+      case 'jpeg':
       case 'png':
         $file['type'] = 'img';
         $file['typedescr'] = 'Te gebruiken voor web';
