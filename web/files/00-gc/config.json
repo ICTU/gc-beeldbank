@@ -27,6 +27,9 @@
   "subdirs": {
     "logo": {
       "descr": "Het standaard Gebruiker Centraal logo"
+    },
+    "z01-avatars": {
+      "name": "Avatars"
     }
   },
   "weight": 0
