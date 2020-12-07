@@ -1,61 +1,105 @@
 {% if file.dimensions.size %}
-
   {% set dimsize = ' data-size=' ~file.dimensions.size ~ '' %}
-
 {% endif %}
 
 
-<div class="file file--type-{{ file.type }}" data-type="{{ file.type }}"{{ dimsize }}">
-
-<div class="file__content">
-
-  {% if file.type == 'img' %}
-
-    {% set path = file.path %}
-
-    {% if file.thumb %}
-      {% set path = file.thumb.path %}
-    {% endif %}
-
-    <img src="{{ path }}" alt="{{ file.name }}" class="file__image">
-
-  {% elseif file.type == 'eps' or file.type == 'pdf' %}
-    <span class="file__type">{{ file.type }}</span>
-    <span class="file__type-descr">Voor drukwerk</span>
-  {% elseif file.type == 'ai' %}
-    <span class="file__type">{{ file.type }}</span>
-    <span class="file__type-descr">Bronbestand van het ontwerp</span>
-  {% endif %}
-
-</div>
-
-<div class="file__info">
-  <h3 class="file__title"> {{ file.name }}</h3>
-
-  <a class="link link--download" target="_blank" href="{{ file.path }}">
-    <span class="link__text">Download bestand</span>
-  </a>
+{% if file.type != 'json' %}
 
 
-  {% if file.descr %}
-    <p class="file__descr">{{ file.descr }}</p>
-  {% endif %}
+  <div class="file file--type-{{ file.type }}" data-type="{{ file.type }}"{{ dimsize }}">
 
+  <div class="file__content">
 
-  <div class="l-meta">
-    <dl class="meta-data">
-      <dt>Grootte:</dt>
-      <dd>{{ file.size }}</dd>
+    {% if file.type == 'img' %}
+      {% set path = file.path %}
 
-      {% if file.dimensions %}
-        <dt>Formaat:</dt>
-        <dd>{{ file.dimensions.width }}px x {{ file.dimensions.height }}px</dd>
+      {% if file.thumb %}
+        {% set path = file.thumb.path %}
       {% endif %}
-    </dl>
 
-    {% if file.typedescr %}
-      <span class="file__typedescr">{{ file.typedescr }}</span>
+      <img src="{{ path }}" alt="{{ file.name }}" class="file__image">
+
+    {% elseif file.type == 'eps' or file.type == 'pdf' %}
+      <span class="file__type">{{ file.type }}</span>
+      <span class="file__type-descr">Voor drukwerk</span>
+    {% elseif file.type == 'ai' %}
+      <span class="file__type">{{ file.type }}</span>
+      <span class="file__type-descr">Bronbestand van het ontwerp</span>
     {% endif %}
+
   </div>
-</div>
-</div>
+
+  <div class="file__info">
+    <h3 class="file__title"> {{ file.name }}</h3>
+
+    <a class="link link--download" target="_blank" href="{{ file.path }}">
+      <span class="link__text">Download bestand</span>
+    </a>
+
+
+    {% if file.descr %}
+      <p class="file__descr">{{ file.descr }}</p>
+    {% endif %}
+
+
+    <div class="l-meta">
+      <dl class="meta-data">
+        <dt>Grootte:</dt>
+        <dd>{{ file.size }}</dd>
+
+        {% if file.dimensions %}
+          <dt>Formaat:</dt>
+          <dd>{{ file.dimensions.width }}px x {{ file.dimensions.height }}px</dd>
+        {% endif %}
+      </dl>
+
+      {% if file.typedescr %}
+        <span class="file__typedescr">{{ file.typedescr }}</span>
+      {% endif %}
+    </div>
+  </div>
+  </div>
+
+{% elseif file.name != 'config.json' %}
+
+
+  <div class="file file--type-{{ file.type }}" data-type="{{ file.type }}">
+
+    <div class="file__content">
+      <div class="font font--{{ file.data.name|replace({' ': '-'})|lower }}">
+        <p>aA</p>
+      </div>
+    </div>
+
+    <div class="file__info">
+      <h3 class="file__title">{{ file.data.name }}</h3>
+
+      {% if file.data.download %}
+        <a class="link link--download" target="_blank" href="{{ file.download }}">
+          <span class="link__text">Download ZIPbestand</span>
+        </a>
+      {% endif %}
+
+      <div class="l-meta">
+        <dl class="meta-data">
+          {% if file.data.url %}
+          <dt class="visually-hidden">URL</dt>
+          <dd class="url"><a class="link link--read-more" href="{{ file.data.url }}">Download bij {{ file.data.provider }}</a></dd>
+          {% endif %}
+          {% if file.data.provider %}
+          <dt class="url">Aanbieder:</dt>
+          <dd>{{ file.data.provider }}</dd>
+          {% endif %}
+        </dl>
+
+        {% if file.data.descr %}
+          <span class="file__typedescr">{{ file.data.descr }}</span>
+        {% endif %}
+      </div>
+
+
+    </div>
+  </div>
+
+
+{% endif %}

@@ -363,6 +363,8 @@ html {
     padding-right: 2rem; }
   .meta-data dd {
     width: 65%; }
+    .meta-data dd.url {
+      width: 100%; }
 
 .file__content {
   display: -webkit-box;
@@ -397,6 +399,8 @@ html {
     background: #fdf0f6; }
     [data-type='ai'] .file__content .file__type {
       color: #E86CA8; }
+  [data-type='json'] .file__content {
+    background: #fef3e3; }
 
 .file__type {
   color: #e8d8c7;
@@ -471,6 +475,28 @@ html {
     clip: rect(0 0 0 0);
     clip: rect(0, 0, 0, 0);
     position: absolute; }
+
+.font {
+  font-size: 5.5rem;
+  line-height: 5.5rem; }
+  .font--league-gothic {
+    font-family: "league_gothicregular", Impact, Helvetica, Arial, sans-serif;
+    font-size: 7rem;
+    line-height: 7rem; }
+
+.link--read-more:before {
+  content: "";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-family: 'icons'; }
+
+.link--read-more:before {
+  display: inline-block;
+  font-size: 1rem;
+  float: left;
+  margin-right: 1rem;
+  color: #25b34b; }
 
 .main-menu {
   width: 100%;

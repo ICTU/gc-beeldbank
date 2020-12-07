@@ -47,6 +47,10 @@
 
   dd {
     width: 65%;
+
+    &.url {
+      width: 100%;
+    }
   }
 }
 
@@ -87,6 +91,10 @@
     .file__type {
       color: $gc-pink-lighter;
     }
+  }
+
+  [data-type='json'] & {
+    background: lighten($gc-orange, 40%);
   }
 }
 
@@ -158,5 +166,27 @@
   span {
     @include visually-hidden;
   }
+}
 
+.font {
+  font-size: 5.5rem;
+  line-height: 5.5rem;
+
+  &--league-gothic {
+    font-family: $font-secondary;
+    font-size: 7rem;
+    line-height: 7rem;
+  }
+}
+
+.link--read-more {
+  @include icon(before, chevron);
+
+  &:before {
+    display: inline-block;
+    font-size: 1rem;
+    float: left;
+    margin-right: 1rem;
+    color: $gc-green;
+  }
 }

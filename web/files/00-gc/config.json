@@ -28,5 +28,6 @@
     "logo": {
       "descr": "Het standaard Gebruiker Centraal logo"
     }
-  }
+  },
+  "weight": 0
 }

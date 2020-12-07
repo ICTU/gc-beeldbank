@@ -4,7 +4,6 @@ namespace App;
 
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
-use App\MakeFile;
 
 class Files {
 
@@ -59,6 +58,7 @@ class GetFiles {
       '*.eps',
       '*.pdf',
       '*.ai',
+      '*.json'
     ];
 
     foreach ($dirs as $maindir) {
@@ -137,6 +137,5 @@ class GetFiles {
     }
 
     return $files;
-
   }
 }

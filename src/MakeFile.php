@@ -114,6 +114,17 @@ class MakeFile {
         $file['type'] = 'ai';
         $file['typedescr'] = 'Bronbestand voor ontwerpen';
         break;
+      case 'json':
+        $file['type'] = 'json';
+
+        if ($fileName !== 'config.json') {
+          $data = file_get_contents($file['path']);
+          $file['data'] = json_decode($data, TRUE);
+
+          $file['download'] = '/' . $file['path'] = $dir . '/' . $file['data']['download'];
+        }
+
+        break;
     }
 
     return $file;
