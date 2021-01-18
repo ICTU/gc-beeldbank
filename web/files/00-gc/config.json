@@ -22,10 +22,14 @@
     "gc-logo-liggend.pdf": { "name": "Logo liggend, pdf" },
     "gc-logo-staand.pdf": { "name": "Logo staand, pdf" },
     "gc-logo-staand@2.5x.png": { "name": "Logo staand, png" },
-    "gc-logo-staand copy 4@2.5x.png": { "name": "Logo liggend, png" }
+    "gc-logo-staand copy 4@2.5x.png": { "name": "Logo liggend, png" },
+    "gc-pubquiz-plain-linkedin@2x.png": { "name": "Pubquiz voor LinkedIn" },
+    "gc-pubquiz-plain@2x.png": { "name": "Pubquiz, webafbeelding" },
+    "gc-pubquiz-rollup-def.pdf": { "name": "Pubquiz, Roll-up banner" },
+    "gc-tony-wikkel.pdf": {"name": "Tony Chocolony wikkel", "descr": "Met tekst \"Bedankt\" in Gebruiker Centraal huisstijl"}
   },
   "subdirs": {
-    "logo": {
+    "00logo": {
       "descr": "Het standaard Gebruiker Centraal logo"
     },
     "z01-avatars": {
