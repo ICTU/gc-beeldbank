@@ -4,3 +4,4 @@ vendor
 .idea/*
 
 /web/theme/node_modules
+yarn.lock
