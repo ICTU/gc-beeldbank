@@ -58,7 +58,7 @@ class GetFiles {
       '*.eps',
       '*.pdf',
       '*.ai',
-      '*.json'
+      '*.json',
     ];
 
     foreach ($dirs as $maindir) {
@@ -71,7 +71,7 @@ class GetFiles {
         $dirdata = file_get_contents($maindir->getRealPath() . "/config.json");
         $dirdata = json_decode($dirdata, TRUE);
 
-        $files[$d]['name'] = $dirdata['name'];
+        $files[$d]['name'] = !empty($dirdata['name']) ? $dirdata['name'] : $maindir->getRealPath();
         $files[$d]['descr'] = isset($dirdata['descr']) ? $dirdata['descr'] : '';
       }
 

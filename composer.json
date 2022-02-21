@@ -16,7 +16,7 @@
     "symfony/string": "^5.1",
     "symfony/filesystem": "^5.1",
     "intervention/image": "^2.5",
-    "ext-json": "^1.7"
+    "ext-json": "*"
   },
   "require-dev": {
     "symfony/var-dumper": "^5.0"
