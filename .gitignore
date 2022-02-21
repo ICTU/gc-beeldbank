@@ -1,6 +1,6 @@
-/vendor
+vendor
 
-/.idea
-/.idea/*
+.idea
+.idea/*
 
-/web/theme/node_modules
+web/theme/node_modules
