@@ -1,5 +1,10 @@
 {
   "name": "Avatars",
-  "descr": "De Gebruiker Centraal avatars."
+  "descr": "De Gebruiker Centraal avatars.",
+  "files": {
+    "ictu-medewerkers.pdf": {
+      "name": "Alle medewerkers, PDF"
+    }
+  }
 }
 
