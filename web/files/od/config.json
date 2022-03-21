@@ -32,6 +32,12 @@
     },
     "od-bm-digitale-toegankelijkheid.pdf": {
       "name": "Beeldmerk, PDF"
+    },
+    "od-naarkantoor-linkedin.png": {
+      "name": "Hoera naar kantoor, LinkedIn"
+    },
+    "od-naarkantoor-twitter.png": {
+      "name": "Hoera naar kantoor, Twitter"
     }
   },
   "subdirs": {
