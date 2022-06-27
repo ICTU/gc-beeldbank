@@ -1,0 +1,11 @@
+{
+  "type": "color",
+  "name": "GC Cyan Darker",
+  "hex": "#009f9c",
+  "cmyk": {
+    "c": "81",
+    "m": "0",
+    "y": "40",
+    "k": "10"
+  }
+}

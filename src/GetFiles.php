@@ -71,6 +71,7 @@ class GetFiles {
         $dirdata = file_get_contents($maindir->getRealPath() . "/config.json");
         $dirdata = json_decode($dirdata, TRUE);
 
+        $files[$d]['data'] = $dirdata;
         $files[$d]['name'] = !empty($dirdata['name']) ? $dirdata['name'] : $maindir->getRealPath();
         $files[$d]['descr'] = isset($dirdata['descr']) ? $dirdata['descr'] : '';
       }
@@ -102,8 +103,8 @@ class GetFiles {
       $subdirdirs = $subsubdirfinder->directories()
         ->notName('thumbs')
         ->in($maindir->getRealPath())
-        ->depth('== 0');
-
+        ->depth('== 0')
+        ->sortByName();
 
       if ($subdirdirs->hasResults()) {
         $si = 0;
@@ -114,8 +115,9 @@ class GetFiles {
 
           $subdirname = $subdir->getBaseName();
 
-          $files[$d]['sub'][$si]['name'] = isset($dirdata['subdirs'][$subdirname]['name']) ? $dirdata['subdirs'][$subdirname]['name'] : ucfirst($subdirname);
+          $files[$d]['sub'][$si]['name'] = isset($dirdata['subdirs'][$subdirname]['title']) ? $dirdata['subdirs'][$subdirname]['title'] : ucfirst($subdirname);
           $files[$d]['sub'][$si]['descr'] = isset($dirdata['subdirs'][$subdirname]['descr']) ? $dirdata['subdirs'][$subdirname]['descr'] : '';
+          $files[$d]['sub'][$si]['modifier'] = isset($dirdata['subdirs'][$subdirname]['modifier']) ? $dirdata['subdirs'][$subdirname]['modifier'] : '';
 
           $subfilefinder = new Finder();
 
@@ -124,7 +126,6 @@ class GetFiles {
             ->Name($extensions)
             ->depth('== 0')
             ->sortByName();
-
 
           foreach ($subdirfiles as $file) {
             $fi++;

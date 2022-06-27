@@ -1,0 +1,12 @@
+{
+  "type": "color",
+  "name": "GC Purple",
+  "hex": "#4c276d",
+  "text_color": "white",
+  "cmyk": {
+    "c": "86",
+    "m": "100",
+    "y": "21",
+    "k": "8"
+  }
+}

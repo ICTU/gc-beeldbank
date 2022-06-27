@@ -1,0 +1,12 @@
+{
+  "type": "color",
+  "name": "GC Green a11y",
+  "descr": "Accessible variant van GC Green",
+  "hex": "#259631",
+  "text_color": "white",
+  "rgb": {
+    "r": "20",
+    "g": "236",
+    "b": "57"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "color",
+  "name": "GC Green, Complementary",
+  "descr": "Aanvullende kleur voor bij GC Green",
+  "hex": "#259631",
+  "cmyk": {
+    "c": "78",
+    "m": "0",
+    "y": "100",
+    "k": "15"
+  }
+}

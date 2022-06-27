@@ -99,10 +99,9 @@
 
                 {% if subitem.descr %}
                   <p>{{ subitem.descr }}</p>
-
                 {% endif %}
 
-                <div class="grid grid--col-3">
+                <div class="grid{{ subitem.modifier ? ' '~subitem.modifier :' grid--col-3' }}">
 
                   {% for file in subitem.files %}
                     {% include 'components/file.html.twig' with { 'file': file } %}

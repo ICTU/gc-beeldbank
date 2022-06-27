@@ -118,10 +118,15 @@ class MakeFile {
         $file['type'] = 'json';
 
         if ($fileName !== 'config.json') {
-          $data = file_get_contents($file['path']);
-          $file['data'] = json_decode($data, TRUE);
+          $data = json_decode(file_get_contents($file['path']), TRUE);
+          $file['data'] = $data;
 
-          $file['download'] = '/' . $file['path'] = $dir . '/' . $file['data']['download'];
+          switch ($data['type']) {
+            case 'download':
+              $file['download'] = '/' . $file['path'] = $dir . '/' . $file['data']['download'];
+              break;
+          }
+
         }
 
         break;

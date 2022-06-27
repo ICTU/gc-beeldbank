@@ -13,16 +13,16 @@
   @include bp-up(sm) {
     display: flex;
     flex-wrap: wrap;
-    margin-left: -$gutter/2;
-    margin-right: -$gutter/2;
+    margin-left: -$gutter*0.5;
+    margin-right: -$gutter*0.5;
   }
 
   &--col-3 {
     > div,
     > section {
       width: calc(50% - #{$gutter});
-      margin-left: $gutter / 2;
-      margin-right: $gutter /2;
+      margin-left: $gutter *0.5;
+      margin-right: $gutter *0.5;
     }
 
     @include bp-up(md) {
@@ -48,19 +48,31 @@
   }
 
   &--col-4 {
-    @include bp-up(sm) {
+    > div,
+    > section {
+      width: calc(50% - #{$gutter});
+      margin-left: $gutter *0.5;
+      margin-right: $gutter *0.5;
+    }
+
+    @include bp-up(md) {
       > div,
       > section {
-        width: calc(50% - #{$gutter});
-        margin-left: $gutter / 2;
-        margin-right: $gutter /2;
+        width: calc(33.333% - #{$gutter});
       }
     }
 
     @include bp-up(lg) {
       > div,
       > section {
-        width: calc(25% - #{$gutter});
+        width: calc(20% - #{$gutter});
+      }
+    }
+
+    @include bp-up(xlg) {
+      > div,
+      > section {
+        width: calc(14.28% - #{$gutter});
       }
     }
   }
@@ -70,8 +82,8 @@
       > div,
       > section {
         width: calc(50% - #{$gutter});
-        margin-left: ($gutter / 2);
-        margin-right: ($gutter / 2);
+        margin-left: ($gutter *0.5);
+        margin-right: ($gutter *0.5);
       }
     }
   }

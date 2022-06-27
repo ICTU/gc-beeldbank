@@ -4,8 +4,6 @@
 
 
 {% if file.type != 'json' %}
-
-
   <div class="file file--type-{{ file.type }}" data-type="{{ file.type }}"{{ dimsize }}">
 
   <div class="file__content">
@@ -36,7 +34,6 @@
       <span class="link__text">Download bestand</span>
     </a>
 
-
     {% if file.descr %}
       <p class="file__descr">{{ file.descr }}</p>
     {% endif %}
@@ -62,44 +59,84 @@
 
 {% elseif file.name != 'config.json' %}
 
-
-  <div class="file file--type-{{ file.type }}" data-type="{{ file.type }}">
-
-    <div class="file__content">
-      <div class="font font--{{ file.data.name|replace({' ': '-'})|lower }}">
-        <p>aA</p>
+  <div class="file file--ext-{{ file.type }} file--type-{{ file.data.type }}" data-ext="{{ file.type }}"
+       data-type="{{ file.data.type }}">
+    {% if file.data.type == 'font' %}
+      <div class="file__content">
+        <div class="font font--{{ file.data.name|replace({' ': '-'})|lower }}">
+          <p>aA</p>
+        </div>
       </div>
-    </div>
 
-    <div class="file__info">
-      <h3 class="file__title">{{ file.data.name }}</h3>
+      <div class="file__info">
+        <h3 class="file__title">{{ file.data.name }}</h3>
 
-      {% if file.data.download %}
-        <a class="link link--download" target="_blank" href="{{ file.download }}">
-          <span class="link__text">Download ZIPbestand</span>
-        </a>
-      {% endif %}
-
-      <div class="l-meta">
-        <dl class="meta-data">
-          {% if file.data.url %}
-          <dt class="visually-hidden">URL</dt>
-          <dd class="url"><a class="link link--read-more" href="{{ file.data.url }}">Download bij {{ file.data.provider }}</a></dd>
-          {% endif %}
-          {% if file.data.provider %}
-          <dt class="url">Aanbieder:</dt>
-          <dd>{{ file.data.provider }}</dd>
-          {% endif %}
-        </dl>
-
-        {% if file.data.descr %}
-          <span class="file__typedescr">{{ file.data.descr }}</span>
+        {% if file.data.download %}
+          <a class="link link--download" target="_blank" href="{{ file.download }}">
+            <span class="link__text">Download ZIPbestand</span>
+          </a>
         {% endif %}
+
+        <div class="l-meta">
+          <dl class="meta-data">
+            {% if file.data.url %}
+              <dt class="visually-hidden">URL</dt>
+              <dd class="url"><a class="link link--read-more" href="{{ file.data.url }}">Download
+                  bij {{ file.data.provider }}</a></dd>
+            {% endif %}
+            {% if file.data.provider %}
+              <dt class="url">Aanbieder:</dt>
+              <dd>{{ file.data.provider }}</dd>
+            {% endif %}
+          </dl>
+
+          {% if file.data.descr %}
+            <span class="file__typedescr">{{ file.data.descr }}</span>
+          {% endif %}
+        </div>
+      </div>
+    {% else %}
+      <div class="file__content">
+        <span
+            class="color color--{{ file.data.name|replace({' ': '-',',' : ''})|lower }}{{ file.data.text_color ? ' text--' ~ file.data.text_color }}"
+            style="background: {{ file.data.hex }}">
+          {{ file.data.hex }}
+        </span>
       </div>
 
+      <div class="file__info">
+        <h3 class="file__title">{{ file.data.name }}</h3>
+        {% if file.data.descr %}
+          <p class="file__descr">{{ file.data.descr }}</p>
+        {% endif %}
 
-    </div>
+        <div class="l-meta l-meta-colors">
+          {% if file.data.cmyk %}
+            <strong>CMYK</strong>
+            <dl class="meta-data meta-data--color-scheme">
+              <dt>C:</dt>
+              <dt>{{ file.data.cmyk.c }}</dt>
+              <dt>M:</dt>
+              <dt>{{ file.data.cmyk.m }}</dt>
+              <dt>Y:</dt>
+              <dt>{{ file.data.cmyk.y }}</dt>
+              <dt>K:</dt>
+              <dt>{{ file.data.cmyk.k }}</dt>
+            </dl>
+          {% elseif file.data.rgb %}
+            <strong>RGB</strong>
+            <dl class="meta-data meta-data--color-scheme">
+              <dt>R:</dt>
+              <dt>{{ file.data.rgb.r }}</dt>
+              <dt>G:</dt>
+              <dt>{{ file.data.rgb.g }}</dt>
+              <dt>B:</dt>
+              <dt>{{ file.data.rgb.b }}</dt>
+            </dl>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
   </div>
-
 
 {% endif %}

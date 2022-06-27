@@ -1,0 +1,12 @@
+{
+  "type": "color",
+  "name": "GC Blue Darkest",
+  "hex": "#002f3e",
+  "text_color": "white",
+  "cmyk": {
+    "c": "100",
+    "m": "68",
+    "y": "50",
+    "k": "56"
+  }
+}

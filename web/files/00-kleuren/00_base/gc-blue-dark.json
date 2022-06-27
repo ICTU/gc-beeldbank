@@ -1,0 +1,12 @@
+{
+  "type": "color",
+  "name": "GC Blue Dark",
+  "hex": "#004152",
+  "text_color": "white",
+  "cmyk": {
+    "c": "96",
+    "m": "59",
+    "y": "46",
+    "k": "43"
+  }
+}

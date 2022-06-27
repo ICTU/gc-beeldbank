@@ -1,0 +1,12 @@
+{
+  "type": "color",
+  "name": "GC Orange a11y",
+  "descr": "Accessible variant van GC Orange (ook wel duivelsdrek)",
+  "hex": "#AD6500",
+  "text_color": "white",
+  "rgb": {
+    "r": "173",
+    "g": "101",
+    "b": "0"
+  }
+}

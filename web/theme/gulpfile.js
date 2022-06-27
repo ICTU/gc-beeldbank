@@ -2,7 +2,7 @@
 
 const del = require('del'),
   gulp = require('gulp'),
-  sass = require('gulp-sass'),
+  sass = require('gulp-dart-sass'),
   autoprefixer = require('gulp-autoprefixer'),
   browserSync = require('browser-sync').create(),
   notify = require('gulp-notify'),
@@ -116,7 +116,7 @@ function prod(done) {
 // Watch files
 function watch() {
   browserSync.init({
-    proxy: 'gcbb.localhost'
+    proxy: 'gcbeeldbank.localhost'
   });
 
   gulp.watch('scss/**/*.scss', styles);

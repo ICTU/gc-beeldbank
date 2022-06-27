@@ -1,0 +1,12 @@
+{
+  "type": "color",
+  "name": "GC Pink",
+  "hex": "#c7236e",
+  "text_color": "white",
+  "cmyk": {
+    "c": "21",
+    "m": "96",
+    "y": "25",
+    "k": "0"
+  }
+}
