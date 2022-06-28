@@ -100,15 +100,18 @@
         <span
             class="color color--{{ file.data.name|replace({' ': '-',',' : ''})|lower }}{{ file.data.text_color ? ' text--' ~ file.data.text_color }}"
             style="background: {{ file.data.hex }}">
-          {{ file.data.hex }}
         </span>
       </div>
 
       <div class="file__info">
         <h3 class="file__title">{{ file.data.name }}</h3>
-        {% if file.data.descr %}
-          <p class="file__descr">{{ file.data.descr }}</p>
-        {% endif %}
+
+        <div class="l-meta l-meta-colors">
+          <dl class="meta-data meta-data--color-scheme">
+            <dt>HEX:</dt>
+            <dt>{{ file.data.hex }}</dt>
+          </dl>
+        </div>
 
         <div class="l-meta l-meta-colors">
           {% if file.data.cmyk %}
@@ -133,6 +136,10 @@
               <dt>B:</dt>
               <dt>{{ file.data.rgb.b }}</dt>
             </dl>
+          {% endif %}
+
+          {% if file.data.descr %}
+            <p class="file__descr">{{ file.data.descr }}</p>
           {% endif %}
         </div>
       </div>
