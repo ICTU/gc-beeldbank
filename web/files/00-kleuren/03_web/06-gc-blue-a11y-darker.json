@@ -1,0 +1,12 @@
+{
+  "type": "color",
+  "name": "GC Blue a11y",
+  "descr": "Accessible variant van GC Blauw, aanvullend",
+  "hex": "#006FA3",
+  "text_color": "white",
+  "rgb": {
+    "r": "173",
+    "g": "111",
+    "b": "163"
+  }
+}

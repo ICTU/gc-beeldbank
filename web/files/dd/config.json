@@ -11,6 +11,28 @@
     },
     "gc-dd-beeldmerk@2x.png": {
       "name": "Beeldmerk, PNG"
+    },
+    "gc-dd-staand_wit_CMYK.eps": { "name":  "Staand, witte tekst "},
+    "gc-dd_beeldmerk_2022_CMYK.eps": { "name":  "Beeldmerk"},
+    "gc-dd_logo_liggend_2022-wit_CMYK.eps": { "name":  "Liggend, witte tekst"},
+    "gc-dd_logo_liggend_2022_CMYK.eps": { "name":  "Liggend"},
+    "gc-dd_logo_staand_CMYK.eps": { "name":  "Staand"},
+    "gc-dd_beeldmerk_2022_RGB.svg": { "name":  "SVG Beeldmerk"},
+    "dd-brand.jpg": { "name":  "Afbeelding voor communicatie", "descr":  "Wil je iets op de site plaatsen met betrekking tot Direct Duidelijk? Gebruik dan deze afbeelding."},
+    "gc-dd-staand_wit_2022_RGB.png": { "name":  "Staand, witte tekst"},
+    "gc-dd_beeldmerk_2022_RGB.png": { "name":  "Beeldmerk"},
+    "gc-dd_logo_liggend_2022_RGB.png": { "name":  "Logo, liggend"},
+    "gc-dd_logo_liggend_wit_2022_RGB.png": { "name":  "Logo, liggend, witte tekst"},
+    "gc-dd_logo_staand_2022_RGB.png": { "name":  "Logo, staand"}
+  },
+  "subdirs": {
+    "eps": {
+      "name": "Drukwerkbestanden",
+      "descr": "Bestanden voor drukwerk"
+    },
+    "png": {
+      "name": "Afbeeldingen voor web",
+      "descr": "Afbeeldingen voor gebruik op web"
     }
   }
 }
