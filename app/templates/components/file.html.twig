@@ -7,7 +7,6 @@
   <div class="file file--type-{{ file.type }}" data-type="{{ file.type }}"{{ dimsize }}">
 
   <div class="file__content">
-
     {% if file.type == 'img' %}
       {% set path = file.path %}
 
@@ -24,7 +23,6 @@
       <span class="file__type">{{ file.type }}</span>
       <span class="file__type-descr">Bronbestand van het ontwerp</span>
     {% endif %}
-
   </div>
 
   <div class="file__info">
@@ -37,7 +35,6 @@
     {% if file.descr %}
       <p class="file__descr">{{ file.descr }}</p>
     {% endif %}
-
 
     <div class="l-meta">
       <dl class="meta-data">
@@ -96,10 +93,15 @@
         </div>
       </div>
     {% else %}
+      {# kleurrr #}
       <div class="file__content">
         <span
             class="color color--{{ file.data.name|replace({' ': '-',',' : ''})|lower }}{{ file.data.text_color ? ' text--' ~ file.data.text_color }}"
             style="background: {{ file.data.hex }}">
+
+          {% if file.data.complementary.hex %}
+            <span class="color__complementary" style="background: {{ file.data.complementary.hex }}"></span>
+          {% endif %}
         </span>
       </div>
 
@@ -115,17 +117,27 @@
 
         <div class="l-meta l-meta-colors">
           {% if file.data.cmyk %}
-            <strong>CMYK</strong>
-            <dl class="meta-data meta-data--color-scheme">
-              <dt>C:</dt>
-              <dt>{{ file.data.cmyk.c }}</dt>
-              <dt>M:</dt>
-              <dt>{{ file.data.cmyk.m }}</dt>
-              <dt>Y:</dt>
-              <dt>{{ file.data.cmyk.y }}</dt>
-              <dt>K:</dt>
-              <dt>{{ file.data.cmyk.k }}</dt>
-            </dl>
+            {% set color_profile_content %}
+              <dl class="meta-data meta-data--color-scheme">
+                <dt>C:</dt>
+                <dt>{{ file.data.cmyk.c }}</dt>
+                <dt>M:</dt>
+                <dt>{{ file.data.cmyk.m }}</dt>
+                <dt>Y:</dt>
+                <dt>{{ file.data.cmyk.y }}</dt>
+                <dt>K:</dt>
+                <dt>{{ file.data.cmyk.k }}</dt>
+              </dl>
+            {% endset %}
+
+            {% set accordion_id = file.data.name ~ '-' ~loop.index %}
+
+            {% include 'components/accordion-item.html.twig' with {
+              'title': 'CMYK',
+              'content': color_profile_content,
+              'id': accordion_id|clean_class
+            } %}
+
           {% elseif file.data.rgb %}
             <strong>RGB</strong>
             <dl class="meta-data meta-data--color-scheme">
@@ -138,9 +150,42 @@
             </dl>
           {% endif %}
 
+          {# aanvullende kleur #}
+          {% if file.data.complementary %}
+            {% set accordion_complementary_id = file.data.complementary.name ~ '-' ~loop.index %}
+
+            {% set color_complementary_content %}
+              <div class="l-meta l-meta-colors">
+                <dl class="meta-data meta-data--color-scheme">
+                  <dt>HEX:</dt>
+                  <dt>{{ file.data.complementary.hex }}</dt>
+                </dl>
+              </div>
+
+              <dl class="meta-data meta-data--color-scheme">
+                <dt>C:</dt>
+                <dt>{{ file.data.complementary.cmyk.c }}</dt>
+                <dt>M:</dt>
+                <dt>{{ file.data.complementary.cmyk.m }}</dt>
+                <dt>Y:</dt>
+                <dt>{{ file.data.complementary.cmyk.y }}</dt>
+                <dt>K:</dt>
+                <dt>{{ file.data.complementary.cmyk.k }}</dt>
+              </dl>
+            {% endset %}
+
+            {% include 'components/accordion-item.html.twig' with {
+              'title': 'Complementair',
+              'subtitle': file.data.complementary.name,
+              'content': color_complementary_content,
+              'id': accordion_complementary_id|clean_class
+            } %}
+          {% endif %}
+
           {% if file.data.descr %}
             <p class="file__descr">{{ file.data.descr }}</p>
           {% endif %}
+
         </div>
       </div>
     {% endif %}

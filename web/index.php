@@ -3,19 +3,25 @@
 require '../vendor/autoload.php';
 
 use Twig\Environment;
+use Twig\Extension\DebugExtension;
 use Twig\Loader\FilesystemLoader;
-use App\GetFiles;
+use App\FileManager;
+
+use App\Twig\ClassList;
+use App\Twig\CleanClass;
+
 
 $loader = new FilesystemLoader('../app/templates');
 $twig = new Environment($loader, ['debug' => TRUE]);
 
-$twig->addExtension(new \Twig\Extension\DebugExtension());
+$twig->addExtension(new ClassList);
+$twig->addExtension(new CleanClass);
+$twig->addExtension(new DebugExtension());
 
-$source = getFiles::files('files');
+$source = FileManager::getAllFiles('files');
 
 echo $twig->render('index.html.twig', [
   'site_name' => 'Gebruiker Centraal Beeldbank',
-  'title' => 'Dit is de homepage :D',
   'source' => $source
 ]);
 

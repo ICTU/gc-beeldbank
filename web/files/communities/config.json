@@ -1,0 +1,38 @@
+{
+  "name": "Communities",
+  "subdirs": {
+    "c_cx": {
+      "subdir_name": "CX"
+    },
+    "c_dt": {
+      "subdir_name": "Design Thinking"
+    },
+    "c_id": {
+      "subdir_name": "Inclusieve Dienstverlening"
+    },
+    "c_if": {
+      "subdir_name": "Intervisie Formulieren"
+    },
+    "c_ndd": {
+      "subdir_name": "Netwerk Direct Duidelijk"
+    },
+    "c_od": {
+      "subdir_name": "Optimaal Digitaal Spelleiders"
+    },
+    "c_omni": {
+      "subdir_name": "Omnichannel"
+    }
+  },
+  "files": {
+    "community-cx-brand.jpg": {
+      "name": "CX Brand Image",
+      "descr": "Gebruik dit plaatje bij artikelen op de website over deze community"
+    },
+    "CX_community_beeldmerk_CMYK.eps": {
+      "name": "CX CMYK Beeldmerk"
+    },
+    "c_od_beeldmerk.svg": {
+      "name": "Beeldmerk Optimaal Digitaal Spelleiders"
+    }
+  }
+}

@@ -3,19 +3,19 @@
   "descr": "Alle Gebruiker Centraal kleuren",
   "subdirs": {
     "00_base": {
-      "title": "Basiskleuren",
+      "subdir_name": "Basiskleuren",
       "descr": "Basiskleuren"
     },
     "01_secundair": {
-      "title": "Secundaire kleuren",
+      "subdir_name": "Secundaire kleuren",
       "descr": "Kunnen aanvullend op de basiskleuren worden gebruikt of als hoofdkleur voor 1 van de brands."
     },
     "02_complementary": {
-      "title": "Aanvullende kleuren",
+      "subdir_name": "Aanvullende kleuren",
       "descr": "Deze kleuren worden altijd aanvullend aan de bijbehorende basis- of secundaire kleur gebruikt, bijvoorbeeld in een kleurvlak als achtergrond van iets. Denk bijvoorbeeld aan de achtergronden van de beeldmerken of benners."
     },
     "03_web": {
-      "title": "Kleuren voor web",
+      "subdir_name": "Kleuren voor web",
       "descr": "Deze kleurvarianten voldoen aan de contrasteisen voor gebruik met witte tekst. Deze hoeven alleen voor het web te gebruiken."
     }
   },

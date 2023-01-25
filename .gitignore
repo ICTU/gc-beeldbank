@@ -4,3 +4,11 @@ vendor
 .idea/*
 
 web/theme/node_modules
+
+###> symfony/framework-bundle ###
+/.env
+/.env.local.php
+/.env.*.local
+
+/var/
+/vendor/

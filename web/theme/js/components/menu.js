@@ -7,6 +7,7 @@
 
 const mainNav = $('.main-menu');
 const menuActive = $('.show-sub');
+const mainMenuLink = $('.main-menu__link--main');
 
 function doNav(width) {
   Waypoint.destroyAll();
@@ -21,35 +22,43 @@ function doNav(width) {
 }
 
 $(window).on('load', function () {
-  var w = $(window).width();
+  const w = $(window).width();
 
   doNav(w);
 });
 
 $(window).on('resize', function () {
-  var w = $(window).width();
+  const w = $(window).width();
 
   doNav(w);
 });
 
+if (!menuActive.length) {
+  const firstMenuItem = $('.main-menu__list > li:first-child > .main-menu__link');
+  const targetNode = $(firstMenuItem.attr('href'));
 
-if(!menuActive.length); {
-  $('.main-menu__item:first-child').addClass('show-sub');
+  firstMenuItem.parent().addClass('show-sub');
+  $('.collection__content', targetNode).removeAttr('hidden');
+
 }
 
-
-$('.menu-link--main').on('click', function(){
+mainMenuLink.on('click', function toggleActiveState() {
   const menuItem = $(this).parent();
+  $('.collection__content').attr('hidden', 'hidden');
+  $('.collection__toggle-foldout').attr('aria-expanded', 'false');
+  const targetNode = $($(this).attr('href'));
 
-  if(!menuItem.hasClass('show-sub')){
+  if (!menuItem.hasClass('show-sub')) {
     mainNav.find('.show-sub').removeClass('show-sub');
     mainNav.find('.active').removeClass('active');
+
+    $('.collection__content', targetNode).removeAttr('hidden');
+    $('.collection__toggle-foldout', targetNode).attr('aria-expanded', 'true');
 
     menuItem.addClass('show-sub');
     $(this).addClass('active');
   }
 });
-
 
 
 // =========================================================================================================

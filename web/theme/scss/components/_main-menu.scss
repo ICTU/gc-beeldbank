@@ -17,17 +17,123 @@
       width: 100%;
     }
 
-    @include bp-up(lg){
+    @include bp-up(lg) {
       width: 11%;
+    }
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+
+    > li + li {
+      border-top: .1rem solid $border-color;
+    }
+  }
+
+  &__item {
+    padding: .8rem 0;
+    font-size: $font-smaller;
+    list-style: none;
+
+    &--with-sub > a {
+      @include icon(after, chevron);
+      position: relative;
+      transition: padding .2s;
+      padding-right: 3rem;
+
+      &:after {
+        position: absolute;
+        top: .3rem;
+        right: 1rem;
+        transform: rotate(90deg);
+        font-size: 1.2rem;
+        color: lighten($gc-greyblue, 40%)
+      }
+
+      &.active {
+        padding-left: .5rem;
+
+        &:after {
+          color: $gc-a11y-green;
+        }
+      }
+    }
+
+    &.show-sub > ul {
+      max-height: 100rem;
+      opacity: 1;
+      margin-top: 1rem;
+    }
+
+    &--sub {
+      @include icon(before, chevron);
+      position: relative;
+      padding: 0 0 0 2rem;
+      width: 100%;
+      margin: 0 0 .5rem 0;
+
+      &:before {
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-size: .9rem;
+        color: $gc-green;
+        margin-top: -.3rem;
+      }
+    }
+  }
+
+  &__sublist {
+    max-height: 0;
+    overflow: hidden;
+    padding: 0 0 0 0.6rem;
+    transition: max-height .3s, opacity .2s, margin .2s;
+    opacity: 0;
+
+
+    ul {
+      border-bottom: 0.1rem solid $border-color;
+      margin: 0.5rem 0 1rem 0;
+      padding-top: 0.5rem;
+      padding-left: 0;
+
+      li {
+        padding-left: 1rem;
+
+        a {
+          color: $gc-greyblue;
+          text-transform: lowercase;
+        }
+
+        &:before {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    display: block;
+    line-height: 2.4rem;
+    text-transform: capitalize;
+
+    &:hover, &:focus, &.active {
+      text-decoration: underline;
+    }
+
+    &--main {
+      font-family: $font-primary-semi;
+    }
+
+    &--sub {
+      font-size: $font-small;
+      line-height: 2.2rem;
     }
   }
 }
 
-.main-menu__list,
-.main-menu__sublist {
-  margin: 0;
-  padding: 0;
-}
 
 .main-menu__item,
 .main-menu__subitem {
@@ -35,85 +141,3 @@
   display: block;
 }
 
-.main-menu__item {
-  padding: .8rem 0;
-  font-size: $font-smaller;
-
-  &--with-sub > a {
-    @include icon(after, chevron);
-    position: relative;
-    transition: padding .2s;
-    padding-right: 3rem;
-
-    &:after {
-      position: absolute;
-      top: .3rem;
-      right: 1rem;
-      transform: rotate(90deg);
-      font-size: 1.2rem;
-      color: lighten($gc-greyblue, 40%)
-    }
-
-    &.active {
-      padding-left: .5rem;
-      &:after {
-        color: $gc-a11y-green;
-      }
-    }
-  }
-
-  + .main-menu__item {
-    border-top: .1rem solid $border-color;
-  }
-}
-
-.menu-link {
-  text-decoration: none;
-  display: block;
-  line-height: 2.4rem;
-
-  &:hover, &:focus, &.active {
-    text-decoration: underline;
-  }
-
-  &--main {
-    font-family: $font-primary-semi;
-  }
-
-  &--sub {
-    font-size: $font-small;
-    line-height: 2.2rem;
-  }
-
-}
-
-.main-menu__sublist {
-  max-height: 0;
-  overflow: hidden;
-  padding: 0;
-  transition: max-height .3s, opacity .2s, margin .2s;
-  opacity: 0;
-
-  .show-sub & {
-    max-height: 50rem;
-    opacity: 1;
-    margin-top: 1rem;
-  }
-}
-
-.main-menu__subitem {
-  @include icon(before, chevron);
-  position: relative;
-  padding: 0 0 0 2rem;
-  width: 100%;
-  margin: 0 0 .5rem 0;
-
-  &:before {
-    position: absolute;
-    left: 0;
-    top: 0;
-    font-size: .9rem;
-    color: $gc-green;
-    margin-top: -.3rem;
-  }
-}

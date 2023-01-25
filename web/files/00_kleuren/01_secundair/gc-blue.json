@@ -1,0 +1,23 @@
+{
+  "type": "color",
+  "name": "GC Blue",
+  "hex": "#0090d0",
+  "text_color": "white",
+  "cmyk": {
+    "c": "80",
+    "m": "29",
+    "y": "0",
+    "k": "0"
+  },
+  "complementary": {
+    "name": "GC Blue Darker",
+    "descr": "Aanvullende kleur voor bij GC Blue",
+    "hex": "#0086c1",
+    "cmyk": {
+      "c": "80",
+      "m": "29",
+      "y": "0",
+      "k": "10"
+    }
+  }
+}

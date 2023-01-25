@@ -1,0 +1,23 @@
+{
+  "type": "color",
+  "name": "GC Green",
+  "descr": "Primaire kleur voor Gebruiker Centraal",
+  "hex": "#27a737",
+  "cmyk": {
+    "c": "78",
+    "m": "0",
+    "y": "100",
+    "k": "0"
+  },
+  "complementary": {
+    "name": "GC Green Darker",
+    "descr": "Aanvullende kleur voor bij GC Green",
+    "hex": "#259631",
+    "cmyk": {
+      "c": "78",
+      "m": "0",
+      "y": "100",
+      "k": "15"
+    }
+  }
+}

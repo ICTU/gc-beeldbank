@@ -1,0 +1,62 @@
+{#
+We call a macro which calls itself to render the full tree.
+@see http://twig.sensiolabs.org/doc/tags/macro.html
+#}
+
+{% import _self as collections %}
+
+{{ collections.collection(items, 0) }}
+
+{% macro collection(items, level) %}
+
+  {% import _self as collections %}
+
+  {% for item in items %}
+    {% set name = item['info']['subdir_name'] ? item['info']['subdir_name'] : item['info']['name'] %}
+
+    {% set collectionClasses = [
+      'collection',
+      level >= 1  ? 'collection--sub',
+      'collection--depth-' ~ level
+    ] %}
+
+  <div id="{{ item['id'] }}" class="{{ collectionClasses|classlist }}">
+
+    {% set id =  item['id'] %}
+
+    {% if level == 0 %}
+    <h2 class="collection__title">
+      <button class="collection__toggle-accordion"
+        aria-controls="content-{{ id }}" aria-expanded="false">{{ name }}</button>
+    </h2>
+
+    <div id="content-{{ id }}" class="collection__content" aria-labelledby="content-{{ id }}" hidden>
+      {% elseif level == 1 %}
+        <h3 class="collection__subtitle">{{ name }}</h3>
+      {% else %}
+        <h4 class="collection__sub-subtitle">{{ name }}</h4>
+      {% endif %}
+
+      {% if item['info']['descr'] %}
+        <p>{{ item['info']['descr'] }}</p>
+      {% endif %}
+
+      {% if item['files'] %}
+        <div class="grid grid--col-3">
+          {% for file in item['files'] %}
+            {% include 'components/file.html.twig' with { 'file': file } %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if item[item['subdir_name']] %}
+        {% set subitems = item[item['subdir_name']] %}
+
+        {{ collections.collection(subitems, level + 1) }}
+      {% endif %}
+      {% if level == 0 %} </div> {% endif %}
+
+    </div>
+  {% endfor %}
+
+{% endmacro %}

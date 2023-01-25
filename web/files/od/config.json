@@ -42,11 +42,11 @@
   },
   "subdirs": {
     "wvdt": {
-      "name": "Week van de Toegankelijkheid",
+      "subdir_name": "Week van de Toegankelijkheid",
       "descr": "Voor de Week van de Toegankelijkheid"
     },
     "bdt": {
-      "name": "Beeldmerk Digitale Toeganglijkheid"
+      "subdir_name": "Beeldmerk Digitale Toeganglijkheid"
     }
   }
 }

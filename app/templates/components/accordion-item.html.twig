@@ -1,0 +1,14 @@
+<div class="accordion-item">
+  <button class="accordion-item__toggle"
+          aria-expanded="false"
+          aria-controls="{{ id }}">
+    {{ title }}
+  </button>
+
+  <div id="{{ id }}" class="accordion-item__content" aria-labelledby="{{ id }}" hidden>
+    {% if subtitle %}
+      <span class="accordion-item__subtitle">{{ subtitle }}</span>
+    {% endif %}
+    {{ content }}
+  </div>
+</div>

@@ -2,57 +2,36 @@
 
 namespace App;
 
-
-// create an image manager instance with favored driver
-
 use Symfony\Component\Filesystem\Filesystem;
-
-class FileSize {
-
-  const BYTE_UNITS = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-
-  const BYTE_PRECISION = [0, 0, 1, 2, 2, 3, 3, 4, 4];
-
-  const BYTE_NEXT = 1024;
-
-  /**
-   * Convert bytes to be human readable.
-   *
-   * @param int $bytes Bytes to make readable
-   * @param int|null $precision Precision of rounding
-   *
-   * @return string Human readable bytes
-   */
-  public static function HumanReadableBytes($bytes, $precision = NULL) {
-    for ($i = 0; ($bytes / self::BYTE_NEXT) >= 0.9 && $i < count(self::BYTE_UNITS); $i++) {
-      $bytes /= self::BYTE_NEXT;
-    }
-    return round($bytes, is_null($precision) ? self::BYTE_PRECISION[$i] : $precision) . ' ' . self::BYTE_UNITS[$i];
-  }
-}
 
 
 class MakeFile {
 
-  public static function Make($basefile, $dir, $dirdata) {
+  use FileSizeTrait;
+  use ImageTrait;
 
-    $filesystem = new Filesystem();
+  /**
+   * Return a file array
+   *
+   * @param \SplFileInfo $basefile Bytes to make readable
+   * @param string $directory_path Path of directory
+   * @param array|null $directory_config Config of directory
+   *
+   * @return array file with associated data
+   */
+
+  public static function Make(\SplFileInfo $basefile, string $directory_path, array $directory_config = NULL): array {
     $file = [];
 
     $fileName = $basefile->getBaseName();
     $file['name'] = $fileName;
+    $file['path'] = $directory_path . '/' . $fileName;
+    $file['size'] = FileSizeTrait::HumanReadableBytes($basefile->getSize());
 
-    // Add more human readable name if present in json, else just use filename
-    if (isset($dirdata['files'])) {
-      if (array_key_exists($fileName, $dirdata['files'])) {
-        $file['name'] = isset($dirdata['files'][$fileName]['name']) ? $dirdata['files'][$fileName]['name'] : $dirdata['files'][$fileName];
-        $file['descr'] = isset($dirdata['files'][$fileName]['descr']) ? $dirdata['files'][$fileName]['descr'] : '';
-      }
+    if (!empty($directory_config['files']) && array_key_exists($fileName, $directory_config['files'])) {
+      $file['name'] = $directory_config['files'][$fileName]['name'] ?? $directory_config['files'][$fileName];
+      $file['descr'] = $directory_config['files'][$fileName]['descr'] ?? '';
     }
-
-    $file['path'] = $dir . '/' . $fileName;
-    $file['size'] = FileSize::HumanReadableBytes($basefile->getSize());
-
 
     // Add info based on description
     switch ($basefile->getExtension()) {
@@ -60,7 +39,7 @@ class MakeFile {
       case 'jpeg':
       case 'png':
         $file['type'] = 'img';
-        $file['typedescr'] = 'Te gebruiken voor web';
+        $file['typedescr'] = 'Kan gebruikt worden op het web';
 
         // Get Dimensions
         $dimensions = getimagesize($basefile->getRealPath());
@@ -70,18 +49,17 @@ class MakeFile {
 
         if ($dimensions[0] > 600) {
           // Create a thumbnail if it's a large file
-          $thumb = [];
-          $thumbpath = $dir . '/thumbs/' . $fileName;
+          $thumb_path = $directory_path . '/thumbs/' . $fileName;
 
-          if ($filesystem->exists($thumbpath)) {
-            $thumb['path'] = $thumbpath;
+          if (file_exists($thumb_path)) {
+            $thumb['path'] = $thumb_path;
             $thumb['name'] = $basefile->getBaseName();
           }
           else {
-            $thumb = ScaleImage::Scale($dir, $basefile);
+            $thumb = ImageTrait::ScaleImage($directory_path, $basefile);
           }
 
-          $file['thumb'] = $thumb;
+          $file['thumb'] = $thumb ?? NULL;
 
           // Add size
           if ($dimensions[0] < 499) {
@@ -123,13 +101,15 @@ class MakeFile {
 
           switch ($data['type']) {
             case 'download':
-              $file['download'] = '/' . $file['path'] = $dir . '/' . $file['data']['download'];
+              $file['download'] = '/' . $file['path'] = $directory_path . '/' . $file['data']['download'];
               break;
           }
-
         }
-
         break;
+    }
+
+    if (!file_exists($file['path'])) {
+      return [];
     }
 
     return $file;
