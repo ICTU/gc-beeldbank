@@ -1,0 +1,23 @@
+{
+  "type": "color",
+  "name": "GC Green a11y",
+  "descr": "Accessible variant van GC Green",
+  "hex": "#148839",
+  "text_color": "white",
+  "rgb": {
+    "r": "20",
+    "g": "236",
+    "b": "57"
+  },
+  "complementary": {
+    "name": "GC Green a11y (Darker)",
+    "descr": "Complementaire kleur van de GC Green a11y. Kan samen met de a11y green in achtergronden voor web met witte tekst erop worden gebruikt.",
+    "hex": "#0B732C",
+    "text_color": "white",
+    "rgb": {
+      "r": "20",
+      "g": "236",
+      "b": "57"
+    }
+  }
+}

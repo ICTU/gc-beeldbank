@@ -8,6 +8,10 @@ toggleButton.on('click', function toggleCollectionContent() {
     $(this).attr('aria-expanded', true);
 
     $(this).addClass('open');
+
+    setTimeout(function() {
+      Waypoint.destroyAll();
+    }, 200);
   } else {
     accordionContent.attr('hidden', 'hidden');
     $(this).attr('aria-expanded', false);

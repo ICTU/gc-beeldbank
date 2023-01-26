@@ -115,31 +115,31 @@
           </dl>
         </div>
 
-        <div class="l-meta l-meta-colors">
-          {% if file.data.cmyk %}
-            {% set color_profile_content %}
-              <dl class="meta-data meta-data--color-scheme">
-                <dt>C:</dt>
-                <dt>{{ file.data.cmyk.c }}</dt>
-                <dt>M:</dt>
-                <dt>{{ file.data.cmyk.m }}</dt>
-                <dt>Y:</dt>
-                <dt>{{ file.data.cmyk.y }}</dt>
-                <dt>K:</dt>
-                <dt>{{ file.data.cmyk.k }}</dt>
-              </dl>
-            {% endset %}
+        {% set accordion_id = file.data.name ~ '-' ~loop.index %}
 
-            {% set accordion_id = file.data.name ~ '-' ~loop.index %}
+        {% if file.data.cmyk %}
+          {% set color_profile_content %}
+            <dl class="meta-data meta-data--color-scheme">
+              <dt>C:</dt>
+              <dt>{{ file.data.cmyk.c }}</dt>
+              <dt>M:</dt>
+              <dt>{{ file.data.cmyk.m }}</dt>
+              <dt>Y:</dt>
+              <dt>{{ file.data.cmyk.y }}</dt>
+              <dt>K:</dt>
+              <dt>{{ file.data.cmyk.k }}</dt>
+            </dl>
+          {% endset %}
 
-            {% include 'components/accordion-item.html.twig' with {
-              'title': 'CMYK',
-              'content': color_profile_content,
-              'id': accordion_id|clean_class
-            } %}
+          {% include 'components/accordion-item.html.twig' with {
+            'title': 'CMYK',
+            'content': color_profile_content,
+            'id': accordion_id|clean_class
+          } %}
 
-          {% elseif file.data.rgb %}
-            <strong>RGB</strong>
+        {% elseif file.data.rgb %}
+
+          {% set color_rgb_content %}
             <dl class="meta-data meta-data--color-scheme">
               <dt>R:</dt>
               <dt>{{ file.data.rgb.r }}</dt>
@@ -148,20 +148,28 @@
               <dt>B:</dt>
               <dt>{{ file.data.rgb.b }}</dt>
             </dl>
-          {% endif %}
+          {% endset %}
 
-          {# aanvullende kleur #}
-          {% if file.data.complementary %}
-            {% set accordion_complementary_id = file.data.complementary.name ~ '-' ~loop.index %}
+          {% include 'components/accordion-item.html.twig' with {
+            'title': 'RGB',
+            'content': color_rgb_content,
+            'id': accordion_id|clean_class
+          } %}
+        {% endif %}
 
-            {% set color_complementary_content %}
-              <div class="l-meta l-meta-colors">
-                <dl class="meta-data meta-data--color-scheme">
-                  <dt>HEX:</dt>
-                  <dt>{{ file.data.complementary.hex }}</dt>
-                </dl>
-              </div>
+        {# aanvullende kleur #}
+        {% if file.data.complementary %}
+          {% set accordion_complementary_id = file.data.complementary.name ~ '-' ~loop.index %}
 
+          {% set color_complementary_content %}
+            <div class="l-meta l-meta-colors">
+              <dl class="meta-data meta-data--color-scheme">
+                <dt>HEX:</dt>
+                <dt>{{ file.data.complementary.hex }}</dt>
+              </dl>
+            </div>
+
+            {% if file.data.complementary.cmyk.c %}
               <dl class="meta-data meta-data--color-scheme">
                 <dt>C:</dt>
                 <dt>{{ file.data.complementary.cmyk.c }}</dt>
@@ -172,21 +180,32 @@
                 <dt>K:</dt>
                 <dt>{{ file.data.complementary.cmyk.k }}</dt>
               </dl>
-            {% endset %}
+            {% endif %}
 
-            {% include 'components/accordion-item.html.twig' with {
-              'title': 'Complementair',
-              'subtitle': file.data.complementary.name,
-              'content': color_complementary_content,
-              'id': accordion_complementary_id|clean_class
-            } %}
-          {% endif %}
+            {% if file.data.complementary.rgb.r %}
+              <dl class="meta-data meta-data--color-scheme">
+                <dt>R:</dt>
+                <dt>{{ file.data.complementary.rgb.r }}</dt>
+                <dt>G:</dt>
+                <dt>{{ file.data.complementary.rgb.g }}</dt>
+                <dt>B:</dt>
+                <dt>{{ file.data.complementary.rgb.b }}</dt>
+              </dl>
+            {% endif %}
+          {% endset %}
 
-          {% if file.data.descr %}
-            <p class="file__descr">{{ file.data.descr }}</p>
-          {% endif %}
+          {% include 'components/accordion-item.html.twig' with {
+            'title': 'Complementair',
+            'subtitle': file.data.complementary.name,
+            'content': color_complementary_content,
+            'id': accordion_complementary_id|clean_class
+          } %}
+        {% endif %}
 
-        </div>
+        {% if file.data.descr %}
+          <p class="file__descr">{{ file.data.descr }}</p>
+        {% endif %}
+
       </div>
     {% endif %}
   </div>

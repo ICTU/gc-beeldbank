@@ -46,18 +46,22 @@ mainMenuLink.on('click', function toggleActiveState() {
   const menuItem = $(this).parent();
   $('.collection__content').attr('hidden', 'hidden');
   $('.collection__toggle-foldout').attr('aria-expanded', 'false');
+  $('.collection')
+
   const targetNode = $($(this).attr('href'));
 
   if (!menuItem.hasClass('show-sub')) {
     mainNav.find('.show-sub').removeClass('show-sub');
     mainNav.find('.active').removeClass('active');
 
-    $('.collection__content', targetNode).removeAttr('hidden');
-    $('.collection__toggle-foldout', targetNode).attr('aria-expanded', 'true');
-
     menuItem.addClass('show-sub');
     $(this).addClass('active');
+  } else {
+    menuItem.removeClass('show-sub');
+    $(this).removeClass('active');
   }
+
+  $('.collection__toggle-accordion', targetNode).trigger('click');
 });
 
 

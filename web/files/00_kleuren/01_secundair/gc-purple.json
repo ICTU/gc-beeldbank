@@ -8,5 +8,16 @@
     "m": "100",
     "y": "21",
     "k": "8"
+  },
+  "complementary": {
+    "name": "GC Purple Darker",
+    "hex": "#401f5a",
+    "text_color": "white",
+    "cmyk": {
+      "c": "86",
+      "m": "100",
+      "y": "21",
+      "k": "30"
+    }
   }
 }

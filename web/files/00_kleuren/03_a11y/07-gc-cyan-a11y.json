@@ -1,0 +1,23 @@
+{
+  "type": "color",
+  "name": "GC Cyan a11y",
+  "descr": "Accessible variant van GC Cyan",
+  "hex": "#00857E",
+  "text_color": "white",
+  "rgb": {
+    "r": "0",
+    "g": "133",
+    "b": "126"
+  },
+  "complementary": {
+    "name": "GC Cyan a11y",
+    "descr": "Accessible variant van GC Cyan, aanvullend op a11y GC Cyan",
+    "hex": "#007670",
+    "text_color": "white",
+    "rgb": {
+      "r": "0",
+      "g": "118",
+      "b": "112"
+    }
+  }
+}

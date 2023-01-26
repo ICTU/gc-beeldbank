@@ -271,10 +271,72 @@ html {
   }
 }
 
+.accordion-item {
+  display: block;
+  width: 100%;
+}
+.accordion-item__toggle {
+  border: none;
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border-top: 0.1rem solid #D1DFE3;
+  padding: 1rem 0;
+  position: relative;
+  color: #004152;
+  font-family: "montserratsemibold", Helvetica, Arial, sans-serif;
+  text-decoration: underline;
+  font-size: 1.6rem;
+  line-height: 1.4;
+}
+.accordion-item__toggle:after {
+  content: "\ea01";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-family: "icons";
+}
+.accordion-item__toggle:after {
+  position: absolute;
+  right: 0;
+  top: 1.5rem;
+  color: #25b34b;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  font-size: 1.2rem;
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
+  transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s;
+}
+.accordion-item__toggle.open {
+  color: #148839;
+  border-color: #148839;
+}
+.accordion-item__toggle.open:after {
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+}
+.accordion-item__toggle.open, .accordion-item__toggle:focus, .accordion-item__toggle:hover {
+  text-decoration: none;
+}
+.accordion-item__subtitle {
+  margin-top: 1rem;
+  display: block;
+  font-size: 1.4rem;
+  font-family: "montserratbold", Helvetica, Arial, sans-serif;
+  line-height: 1.2;
+}
+.accordion-item__content {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .collection {
   padding-top: 3rem;
   border-top: 0.1rem solid #D1DFE3;
-  margin-top: 5rem;
+  margin-top: 3rem;
 }
 @media (min-width: 1100px) {
   .collection {
@@ -511,7 +573,6 @@ html {
 .l-meta-colors {
   border-top: 0.1rem solid #D1DFE3;
   margin-top: 1rem;
-  padding-top: 1rem;
 }
 
 .file__descr {

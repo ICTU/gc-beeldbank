@@ -1,0 +1,58 @@
+.accordion-item {
+  display: block;
+  width: 100%;
+
+  &__toggle {
+    @include icon(after, chevron);
+
+    border: none;
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border-top: .1rem solid $border-color;
+    padding: 1rem 0;
+    position: relative;
+    color: $base-font-color;
+    font-family: $font-primary-semi;
+    text-decoration: underline;
+    font-size: $font-smaller;
+    line-height: 1.4;
+
+    &:after {
+      position: absolute;
+      right: 0;
+      top: 1.5rem;
+      color: $gc-green;
+      transform: rotate(90deg);
+      font-size: 1.2rem;
+      transition: transform 0.2s;
+    }
+
+    &.open {
+      color: $gc-a11y-green;
+      border-color: $gc-a11y-green;
+
+      &:after {
+        transform: rotate(-90deg);
+      }
+    }
+
+    &.open, &:focus, &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &__subtitle {
+    margin-top: 1rem;
+    display: block;
+    font-size: $font-small;
+    font-family: $font-primary-bold;
+    line-height: 1.2;
+  }
+
+  &__content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
