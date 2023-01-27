@@ -3,15 +3,12 @@ const toggleButton = $('.collection__toggle-accordion');
 toggleButton.on('click', function toggleCollectionContent() {
   const accordionContent = $('#' + $(this).attr('aria-controls'));
 
-  if(!$(this).hasClass('open')){
+  if (!$(this).hasClass('open')) {
     accordionContent.removeAttr('hidden');
     $(this).attr('aria-expanded', true);
 
     $(this).addClass('open');
 
-    setTimeout(function() {
-      Waypoint.destroyAll();
-    }, 200);
   } else {
     accordionContent.attr('hidden', 'hidden');
     $(this).attr('aria-expanded', false);
@@ -26,7 +23,7 @@ const accordionButton = $('.accordion-item__toggle');
 accordionButton.on('click', function toggleAccordionContent() {
   const accordionContent = $('#' + $(this).attr('aria-controls'));
 
-  if(!$(this).hasClass('open')){
+  if (!$(this).hasClass('open')) {
     accordionContent.removeAttr('hidden');
     $(this).attr('aria-expanded', true);
 
@@ -37,7 +34,6 @@ accordionButton.on('click', function toggleAccordionContent() {
 
     $(this).removeClass('open');
   }
-
 })
 
 

@@ -146,14 +146,6 @@ class FileManager {
     // All files that need to be shown
     $files[] = (new FileManager)->buildTree($directory, $allowed_extensions, 0);
 
-    // List of paths to thumbs which need to made
-    /*
-    $thumbs_to_make = fileManager::fetchThumbPaths($files[0], 'thumb_path');
-
-    foreach ($thumbs_to_make as $thumb_path) {
-      ImageHelper::ScaleImage($thumb_path);
-    }*/
-
     return $files[0];
   }
 
