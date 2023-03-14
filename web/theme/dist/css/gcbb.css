@@ -522,7 +522,7 @@ html {
 }
 
 .meta-data {
-  color: #52757e;
+  color: #4A6F78;
   font-size: 1.5rem;
   line-height: 2.4rem;
   display: -webkit-box;
@@ -629,7 +629,7 @@ html {
   border-top: 0.1rem solid #D1DFE3;
   display: block;
   width: 100%;
-  color: #52757e;
+  color: #4A6F78;
   font-size: 1.4rem;
   line-height: 1.4;
   clear: both;
@@ -893,7 +893,7 @@ html {
   -webkit-transform: rotate(90deg);
           transform: rotate(90deg);
   font-size: 1.2rem;
-  color: #c4d4d8;
+  color: #bacfd4;
 }
 .main-menu__item--with-sub > a.active {
   padding-left: 0.5rem;
@@ -945,7 +945,7 @@ html {
   padding-left: 1rem;
 }
 .main-menu__sublist ul li a {
-  color: #52757e;
+  color: #4A6F78;
   text-transform: lowercase;
 }
 .main-menu__sublist ul li:before {
