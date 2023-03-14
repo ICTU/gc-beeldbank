@@ -12,7 +12,7 @@ We call a macro which calls itself to render the full tree.
   {% import _self as collections %}
 
   {% for item in items %}
-    {% set name = item['info']['subdir_name'] ? item['info']['subdir_name'] : item['info']['name'] %}
+    {% set name = item['info']['display_name'] ? item['info']['display_name'] : item['info']['name'] %}
 
     {% set collectionClasses = [
       'collection',
@@ -27,7 +27,7 @@ We call a macro which calls itself to render the full tree.
     {% if level == 0 %}
     <h2 class="collection__title">
       <button class="collection__toggle-accordion"
-        aria-controls="content-{{ id }}" aria-expanded="false">{{ name }}</button>
+        aria-controls="{{ id }}" aria-expanded="false">{{ name }}</button>
     </h2>
 
     <div id="content-{{ id }}" class="collection__content" aria-labelledby="content-{{ id }}" hidden>

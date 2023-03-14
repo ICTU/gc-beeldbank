@@ -1,4 +1,8 @@
-<div class="accordion-item">
+{% set accordion_classes = [
+  'accordion-item',
+  modifier ? 'accordion-item--'~ modifier] %}
+
+<div class="{{ accordion_classes|classlist }}">
   <button class="accordion-item__toggle"
           aria-expanded="false"
           aria-controls="{{ id }}">

@@ -1,6 +1,6 @@
 
 .main-menu {
-  width: 100%;
+  width: 94%;
   margin-top: 0;
   transition: margin .4s;
 
@@ -13,12 +13,16 @@
     z-index: 1;
     width: 20%;
 
-    .l-inner {
-      width: 100%;
+    @include bp-between(md, xlg) {
+      width: 16%;
     }
 
-    @include bp-up(lg) {
+    @include bp-up(xlg) {
       width: 11%;
+    }
+
+    .l-inner {
+      width: 100%;
     }
   }
 
@@ -91,7 +95,6 @@
     transition: max-height .3s, opacity .2s, margin .2s;
     opacity: 0;
 
-
     ul {
       border-bottom: 0.1rem solid $border-color;
       margin: 0.5rem 0 1rem 0;
@@ -111,6 +114,10 @@
         }
       }
     }
+
+    > li:last-child ul {
+      border: none;
+    }
   }
 
   &__link {
@@ -124,7 +131,9 @@
     }
 
     &--main {
-      font-family: $font-primary-semi;
+      font-weight: $fw-semi;
+      font-size: 1.8rem;
+      line-height: 1.4;
     }
 
     &--sub {
@@ -133,6 +142,8 @@
     }
   }
 }
+
+
 
 
 .main-menu__item,

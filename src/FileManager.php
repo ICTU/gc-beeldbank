@@ -27,37 +27,50 @@ class FileManager {
     foreach ($directoryList as $key => $directory) {
       $childDir = $pathname . '/' . $directory->getBaseName();
       $directory_basename = $directory->getBasename();
-      $directory_info = [];
       $directory_config = [];
       $fileFinder = new Finder();
       $file_list = [];
-
-      // Fetch directory config
-      if ($level === 0) {
-        $config_path = $pathname . '/' . $directory_basename . '/config.json';
-        $directory_config = file_exists($config_path) ? json_decode(file_get_contents($config_path), TRUE) : [];
-      }
-      elseif ($level >= 1) {
-        $config_path = $pathname . '/config.json';
-        $directory_config = file_exists($config_path) ? json_decode(file_get_contents($config_path), TRUE) : [];
-      }
-
       $directory_info['name'] = $directory_basename;
 
-      if ($level === 0) {
-        $directory_info['name'] = !empty($directory_config['name']) ? $directory_config['name'] : $directory_basename;
-        $directory_info['descr'] = !empty($directory_config['descr']) ? $directory_config['descr'] : '';
+      // Fetch config
+      $directory_config_file = $directory->getRealPath() . '/config.json';
+
+      if (file_exists($directory_config_file)) {
+        $directory_config = json_decode(file_get_contents($directory_config_file), TRUE);
+      }
+      elseif ($directory_basename === 'cmyk') {
+        $directory_config['descr'] = 'Deze bestanden kan je gebruiken voor drukwerk.';
+      } elseif (!(file_exists($directory_config_file))) {
+        $config_path = $pathname . '/config.json';
+
+        if(file_exists($config_path)){
+          $directory_config = json_decode(file_get_contents($pathname . '/config.json'), TRUE);
+
+          if(isset($directory_config['subdirs'][$directory_basename])) {
+            $subdir_info = $directory_config['subdirs'][$directory_basename];
+
+            $directory_config['name'] = !empty($subdir_info['subdir_name']) ? $subdir_info['subdir_name'] : $directory_basename;
+            $directory_config['descr'] = !empty($subdir_info['descr']) ? $subdir_info['descr'] : '';
+          }
+
+          // There isn't a subdirectory name to use
+          // and we don't want to use the name from the root config
+          if($level >= 1 && !isset($directory_config['subdirs'][$directory_basename])) {
+            $directory_config['name'] = $directory_basename;
+          }
+        }
       }
 
-      if (!empty($directory_config['subdirs'][$directory_basename]) && $subdir_config = $directory_config['subdirs'][$directory_basename]) {
-        $directory_info['name'] = !empty($subdir_config['subdir_name']) ? $subdir_config['subdir_name'] : $directory_basename;
-        $directory_info['descr'] = !empty($subdir_config['descr']) ? $subdir_config['descr'] : '';
+      // Set directory info
+      if ($directory_basename === 'cmyk') {
+        $directory_config['descr'] = 'Deze bestanden kan je gebruiken voor drukwerk.';
       }
 
-      // Default directory descriptions
-      if (strtolower($directory_basename) === 'cmyk') {
-        $directory_info['descr'] = 'Deze bestanden kan je gebruiken voor drukwerk.';
-      }
+      $directory_info = [
+         'name' => !empty($directory_config['name']) ? $directory_config['name'] : $directory_basename,
+         'descr' => !empty($directory_config['descr']) ? $directory_config['descr'] : '',
+         'display_name' => !empty($directory_config['display_name']) ? $directory_config['display_name'] : '',
+      ];
 
       // Fetch all files
       $files_in_directory = $fileFinder->files()

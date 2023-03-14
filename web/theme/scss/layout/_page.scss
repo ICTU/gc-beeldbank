@@ -36,7 +36,6 @@ html {
   display: block;
   font-family: $font-secondary;
   font-size: 4.4rem;
-  text-transform: uppercase;
 }
 
 .l-header {
@@ -80,7 +79,17 @@ html {
     }
   }
 
-  @include bp-up(lg) {
+  @include bp-between(md, xlg) {
+    aside {
+      width: 20%;
+    }
+
+    .l-content {
+      width: 80%;
+    }
+  }
+
+  @include bp-up(xlg) {
     aside {
       width: 15%;
     }

@@ -3,6 +3,7 @@
 namespace App;
 
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
 
 
 class MakeFile {
@@ -99,10 +100,32 @@ class MakeFile {
           $data = json_decode(file_get_contents($file['path']), TRUE);
           $file['data'] = $data;
 
-          switch ($data['type']) {
-            case 'download':
-              $file['download'] = '/' . $file['path'] = $directory_path . '/' . $file['data']['download'];
-              break;
+          if (isset($data['type'])) {
+            switch ($data['type']) {
+              case 'download':
+                $file['download'] = '/' . $file['path'] = $directory_path . '/' . $file['data']['download'];
+                break;
+              case 'color':
+                if (isset($data['reuse'])) {
+
+                  $colorFinder = new Finder();
+                  $reusableFiles = $colorFinder->files()
+                    ->in('files')
+                    ->name($data['reuse']);
+
+                  if ($reusableFiles->hasResults()) {
+                    foreach ($reusableFiles as $reusableFile) {
+                      $reusableFilePath = $reusableFile->getPath() . '/' . $reusableFile->getBaseName();
+
+                      if(file_exists($reusableFilePath)) {
+                        $data = json_decode(file_get_contents($reusableFilePath), TRUE);
+                        $file['data'] = $data;
+                      }
+                    }
+                  }
+                }
+                break;
+            }
           }
         }
         break;

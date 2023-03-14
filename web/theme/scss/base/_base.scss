@@ -19,6 +19,7 @@ body {
   font-family: $font-primary;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  font-weight: $fw-reg;
 
   @include bp-down(md){
     font-size: 1.6rem;
@@ -49,7 +50,17 @@ h1, h2, h3, h4, h5, h6 {
   font-family: $base-heading-font;
   color: $base-heading-color;
   margin: 0;
-  font-weight: normal;
+  font-weight: $fw-xbold;
+}
+
+h1 {
+  font-size: 3rem;
+  line-height: 1;
+
+  @include bp-up(md) {
+    font-size: $base-h1-size;
+    line-height: $base-h1-line-height;
+  }
 }
 
 h2 {

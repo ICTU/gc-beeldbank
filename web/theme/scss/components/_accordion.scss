@@ -14,10 +14,11 @@
     padding: 1rem 0;
     position: relative;
     color: $base-font-color;
-    font-family: $font-primary-semi;
+    font-family: $font-primary;
     text-decoration: underline;
     font-size: $font-smaller;
     line-height: 1.4;
+    font-weight: $fw-semi;
 
     &:after {
       position: absolute;
@@ -54,5 +55,41 @@
   &__content {
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+
+  &--color-scheme .accordion-item__toggle {
+    padding-top: 0;
+    display: flex;
+    text-decoration: none;
+    border: none;
+
+    &:after {
+      position: relative;
+      display: inline-block;
+      top: auto;
+      margin: 0.5rem 0 0 1rem;
+    }
+  }
+
+  &--complementary {
+    margin-top: 2rem;
+
+    .file {
+      &__info {
+        border: none;
+        margin-top: 0;
+      }
+
+      &__title {
+        font-size: 1.5rem;
+        line-height: 1.4;
+      }
+    }
+  }
+}
+
+.font {
+  &--league-gothic {
+    font-family: $font-legacy-secondary;
   }
 }

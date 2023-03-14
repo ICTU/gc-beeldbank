@@ -1,0 +1,19 @@
+{
+  "name": "NLDS Purple",
+  "descr": "Secundaire kleur voor NLDS",
+  "hex": "#74295F",
+  "rgb": {
+    "r": "116",
+    "g": "41",
+    "b": "95"
+  },
+  "complementary": {
+    "name": "NLDS Purple Darker",
+    "hex": "#681B53",
+    "rgb": {
+      "r": "104",
+      "g": "27",
+      "b": "83"
+    }
+  }
+}

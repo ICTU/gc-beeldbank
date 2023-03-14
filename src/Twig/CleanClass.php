@@ -21,7 +21,6 @@ class CleanClass extends AbstractExtension {
    * @return string sanitized
    */
 
-
   public function MakeCleanClass(string $classname) {
 
     if(empty($classname)){

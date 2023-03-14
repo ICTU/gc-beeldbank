@@ -23,6 +23,7 @@
     margin-top: 2rem;
 
     @include bp-up(md) {
+      margin-top: 5rem;
       padding-left: 3rem;
     }
   }
@@ -35,13 +36,8 @@
     text-transform: capitalize;
 
     @include bp-up(md) {
-      font-size: 4.6rem;
-      line-height: 4.6rem;
-    }
-
-    @include bp-up(lg) {
-      font-size: 5.6rem;
-      line-height: 5.6rem;
+      font-size: 3.8rem;
+      line-height: 1;
     }
   }
 

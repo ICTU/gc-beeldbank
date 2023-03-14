@@ -1,0 +1,27 @@
+{
+  "type": "color",
+  "name": "Optimaal Digitaal Orange",
+  "descr": "Secundaire kleur bij Optimaal Digitaal is GC Green",
+  "hex": "#BA4F0C",
+  "cmyk": {
+    "c": "20",
+    "m": "76",
+    "y": "100",
+    "k": "10"
+  },
+  "rgb": {
+    "r": "186",
+    "g": "79",
+    "b": "12"
+  },
+  "complementary": {
+    "name": "Optimaal Digitaal Orange Darker",
+    "hex": "#AA450C",
+    "cmyk": {
+      "c": "9",
+      "m": "86",
+      "y": "100",
+      "k": "1"
+    }
+  }
+}

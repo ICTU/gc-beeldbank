@@ -20,6 +20,10 @@
   + p {
     margin-top: 1rem;
   }
+
+  .color & {
+    width: 100%;
+  }
 }
 
 .file__info {
@@ -118,12 +122,6 @@
   }
 }
 
-.file__type-descr {
-  color: $gc-greyblue;
-  font-size: 1.1rem;
-  line-height: 1.4rem;
-  font-family: $font-primary-semi;
-}
 
 .l-meta {
   width: 100%;
@@ -148,8 +146,8 @@
   display: block;
   width: 100%;
   color: $gc-greyblue;
-  font-size: 1.2rem;
-  line-height: 1.6rem;
+  font-size: 1.4rem;
+  line-height: 1.4;
   clear: both;
   margin-top: 1rem;
   padding-top: 1rem;
@@ -226,4 +224,29 @@
 
 .text--white {
   color: $white;
+}
+
+.color {
+  .meta-data {
+    width: 100%;
+  }
+
+  p {
+    font-size: 1.6rem;
+    line-height: 1.4;
+  }
+}
+
+.font{
+  &--fira-sans {
+    font-family: $font-secondary;
+  }
+
+  &--league-gothic {
+    font-family: $font-legacy-secondary;
+  }
+
+  &--montserrat {
+    font-family: $font-legacy-primary;
+  }
 }

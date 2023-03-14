@@ -123,9 +123,6 @@ function watch() {
   gulp.watch('js/components/*.js', js);
 
   gulp.watch('img/icons/*.svg', gulp.series(makeFont, styles));
-
-  //gulp.watch('styleguide/**/*.scss', styleGuide);
-  //gulp.watch('styleguide/**/*.html', styleGuide);
 }
 
 
@@ -134,4 +131,4 @@ exports.prod = prod;
 exports.styles = styles;
 exports.js = js;
 exports.default = watch;
-//exports.styleguide = styleGuide;
+

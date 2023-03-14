@@ -13,9 +13,22 @@ class ClassList extends AbstractExtension {
     ];
   }
 
-  public function MakeList($items) {
+  /**
+   * Make an array into a list of classes without spaces
+   *
+   * @param array $items array of string names
+   *
+   * @return string sanitized
+   */
+
+
+  public function MakeList(array $items) {
 
     $classlist = [];
+
+    if(!is_array($items)){
+      return '';
+    }
 
     foreach ($items as $item) {
 
@@ -25,8 +38,6 @@ class ClassList extends AbstractExtension {
       }
     }
 
-    $content = implode($classlist, ' ');
-
-    return $content;
+    return implode(' ', $classlist);
   }
 }

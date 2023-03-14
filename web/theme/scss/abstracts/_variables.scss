@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@700&family=Montserrat:wght@300&family=Source+Sans+Pro:wght@300;400;600;700&display=swap');
 
 // * COLORS * //
 
@@ -83,12 +84,24 @@ $color-x-light:             $gc-pantybrown-xlight !default;
  * Typography
  */
 
-$font-primary:              'montserratregular', Helvetica, Arial, sans-serif;
-$font-primary-bold:         'montserratbold', Helvetica, Arial, sans-serif;
-$font-primary-light:        'montserratlight', Helvetica, Arial, sans-serif;
-$font-primary-semi:         'montserratsemibold', Helvetica, Arial, sans-serif;
+$font-primary:              'Source Sans Pro', Helvetica, Arial, sans-serif;
+$font-primary-bold:         'Source Sans Pro', Helvetica, Arial, sans-serif;
+$font-primary-light:        'Source Sans Pro', Helvetica, Arial, sans-serif;
+$font-primary-semi:         'Source Sans Pro', Helvetica, Arial, sans-serif;
 
-$font-secondary:            'league_gothicregular', Impact, Helvetica, Arial, sans-serif;
+$font-secondary:            'Fira Sans', Helvitica, Arial, sans-serif;
+
+
+$font-legacy-primary:              'montserratregular', Helvetica, Arial, sans-serif;
+$font-legacy-primary-bold:         'montserratbold', Helvetica, Arial, sans-serif;
+
+$font-legacy-secondary:            'league_gothicregular', Impact, Helvetica, Arial, sans-serif;
+
+// Font weights
+$fw-reg: 400;
+$fw-light: 300;
+$fw-bold: 700;
+$fw-xbold: 800;
 
 
 // Color Definitions
@@ -99,8 +112,8 @@ $base-line-height:         3rem !default;
 $base-font-weight:         300 !default;
 $base-font-family:         $font-primary !default;
 
-$font-small:               1.4rem !default;
-$font-smaller:             1.6rem !default;
+$font-small:               1.5rem !default;
+$font-smaller:             1.7rem !default;
 
 $link:                     $base-font-color !default;
 $link-hover:               $base-font-color !default;
@@ -108,17 +121,17 @@ $link-hover:               $base-font-color !default;
 // Fonts and Typography
 
 $fw-reg:                    300 !default;
+$fw-semi:                   600 !default;
 $fw-bold:                   700 !default;
-$fw-semi:                   500 !default;
 
 $base-heading-color:        $base-font-color !default;
-$base-heading-font:         $font-primary-bold !default;
+$base-heading-font:         $font-secondary !default;
 
-$base-h1-size:              56px !default;
-$base-h1-line-height:       66px !default;
+$base-h1-size:              4.8rem !default;
+$base-h1-line-height:       1 !default;
 
 $base-h2-size:              2.6rem !default;
-$base-h2-line-height:       3.6rem !default;
+$base-h2-line-height:       1.4 !default;
 
 $base-h3-size:              2.4rem !default;
 $base-h3-line-height:       3.4rem !default;
@@ -145,8 +158,6 @@ $submit-bg:                $gc-a11y-green;
 $submit-hover-bg:          $gc-a11y-green-darker;
 $submit-color:             $white;
 $button-font:              $font-secondary;
-
-
 
 /*
  * Grid + Widths

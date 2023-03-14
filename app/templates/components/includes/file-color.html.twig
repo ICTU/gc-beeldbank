@@ -1,0 +1,90 @@
+{% macro color(color, is_complementary) %}
+
+  {% if not is_complementary %}
+    <div class="file__content">
+      {% set color_classes = [
+        'color',
+        color.name ? 'color--' ~ color.name|clean_class,
+        text_color ? 'text--' ~ text_color
+      ] %}
+
+      <span class="{{ color_classes|classlist }}" style="background: {{ color.hex }}">
+    {% if color.complementary %}
+      <span class="color__complementary" style="background: {{ color.complementary.hex }}"></span>
+    {% endif %}
+  </span>
+    </div>
+  {% endif %}
+
+  <div class="file__info">
+    <div class="color color--base">
+      <h3 class="file__title">{{ color.name }}</h3>
+
+      {% if color.descr %}
+        <p>{{ color.descr }}</p>
+      {% endif %}
+
+      <dl class="meta-data meta-data--color-scheme">
+        <dt>HEX:</dt>
+        <dd>{{ color.hex }}</dd>
+      </dl>
+
+      {% if color.rgb %}
+        {% set color_rgb_content %}
+          <dl class="meta-data meta-data--color-scheme">
+            <dt>R:</dt>
+            <dd>{{ color.rgb.r }}</dd>
+            <dt>G:</dt>
+            <dd>{{ color.rgb.g }}</dd>
+            <dt>B:</dt>
+            <dd>{{ color.rgb.b }}</dd>
+          </dl>
+        {% endset %}
+
+        {% include 'components/accordion-item.html.twig' with {
+          'title': 'RGB',
+          'content': color_rgb_content,
+          'id': color.name|clean_class ~ '-' ~loop.index~'-rgb',
+          'modifier': 'color-scheme'
+        } %}
+      {% endif %}
+
+      {% if color.cmyk %}
+
+        {% set content_cmyk %}
+          <dl class="meta-data meta-data--color-scheme">
+            <dt>C:</dt>
+            <dd>{{ color.cmyk.c }}</dd>
+            <dt>M:</dt>
+            <dd>{{ color.cmyk.m }}</dd>
+            <dt>Y:</dt>
+            <dd>{{ color.cmyk.y }}</dd>
+            <dt>K:</dt>
+            <dd>{{ color.cmyk.k }}</dd>
+          </dl>
+        {% endset %}
+
+        {% include 'components/accordion-item.html.twig' with {
+          'title': 'CMYK',
+          'content': content_cmyk,
+          'id': color.name|clean_class ~ '-' ~loop.index~'-cmyk',
+          'modifier': 'color-scheme'
+        } %}
+      {% endif %}
+
+    </div>
+  </div>
+
+{% endmacro %}
+
+{{ _self.color(file.data, 0) }}
+
+{% if file.data.complementary %}
+
+  {% include 'components/accordion-item.html.twig' with {
+    'title': 'Complementair',
+    'content': _self.color(file.data.complementary, 1),
+    'id': file.data.complementary.name|clean_class ~ '-complementary',
+    'modifier': 'complementary'
+  } %}
+{% endif %}

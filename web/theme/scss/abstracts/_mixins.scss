@@ -79,6 +79,16 @@
   }
 }
 
+@mixin bp-between($start, $end) {
+  $mw-start: map-get($breakpoints, $start);
+  $mw-end: map-get($breakpoints, $end) - 1px;
+
+  // Prints a media query based on the values
+  @media (min-width: $mw-start) and (max-width: $mw-end) {
+    @content;
+  }
+}
+
 @mixin visually-hidden() {
   margin: -1px;
   padding: 0;
