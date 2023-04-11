@@ -116,7 +116,7 @@ function prod(done) {
 // Watch files
 function watch() {
   browserSync.init({
-    proxy: 'gcbeeldbank.localhost'
+    proxy: 'beeldbieb.localhost'
   });
 
   gulp.watch('scss/**/*.scss', styles);
