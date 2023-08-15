@@ -4,7 +4,6 @@ namespace App;
 
 use Symfony\Component\Finder\Finder;
 use Imagick;
-use ImagickDraw;
 
 class MakeFile {
 

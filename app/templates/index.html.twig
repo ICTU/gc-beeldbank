@@ -28,23 +28,6 @@
       }
     } %}
 
-    <aside class="aside aside--nav">
-
-      <nav class="main-menu">
-
-        <h2 class="visually-hidden">Hoofdmenu</h2>
-
-        <div class="l-inner">
-
-          {% include 'includes/sidebar_menu.html.twig' with {
-            'items' : source
-          } %}
-        </div>
-
-      </nav>
-    </aside>
-
-
     <div class="l-content">
 
       <h1>Gebruiker Centraal Beeldbank</h1>
@@ -54,10 +37,22 @@
       } %}
     </div>
 
-  </main>
-</div>
+    <aside class="aside aside--nav">
 
-{% include 'includes/footer.html.twig' %}
+      <nav class="main-menu">
+        <h2 class="visually-hidden">Hoofdmenu</h2>
+
+        <div class="l-inner">
+          {% include 'includes/sidebar_menu.html.twig' with {
+            'items' : source
+          } %}
+        </div>
+      </nav>
+    </aside>
+
+  </main>
+
+  {% include 'includes/footer.html.twig' %}
 </div>
 
 </body>

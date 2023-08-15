@@ -35,16 +35,19 @@ class FileManager {
       // Fetch config
       $directory_config_file = $directory->getRealPath() . '/config.json';
 
-      if (file_exists($directory_config_file)) {
-        $directory_config = json_decode(file_get_contents($directory_config_file), TRUE);
-      }
-      elseif ($directory_basename === 'cmyk') {
+
+      if ($directory_basename === 'cmyk') {
         $directory_config['name'] = 'Voor drukwerk';
         $directory_config['descr'] = 'Deze bestanden kan je gebruiken voor drukwerk.';
       }
-      elseif ($directory_basename === 'rgb') {
+
+      if ($directory_basename === 'rgb') {
         $directory_config['name'] = 'Voor web';
         $directory_config['descr'] = 'Deze bestanden zijn voor gebruik op het web.';
+      }
+
+      if (file_exists($directory_config_file)) {
+        $directory_config = json_decode(file_get_contents($directory_config_file), TRUE);
       }
       elseif (!(file_exists($directory_config_file))) {
         $config_path = $pathname . '/config.json';

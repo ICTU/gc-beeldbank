@@ -266,12 +266,19 @@ html {
   }
   #main aside {
     width: 25%;
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
   }
   #main aside {
     padding-right: 3rem;
   }
   #main .l-content {
     width: 75%;
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+    padding-bottom: 10rem;
   }
 }
 @media (min-width: 700px) and (max-width: 1599px) {
@@ -288,7 +295,27 @@ html {
   }
   #main .l-content {
     width: 85%;
+    padding-bottom: 12rem;
   }
+}
+
+.l-page-footer-wrapper {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background: #004152;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+@media (min-width: 560px) {
+  .l-page-footer-wrapper {
+    padding-right: 3rem;
+    padding-left: 3rem;
+  }
+}
+.l-page-footer-wrapper a {
+  color: #fff;
 }
 
 .accordion-item {
@@ -983,3 +1010,4 @@ html {
   list-style: none;
   display: block;
 }
+/*# sourceMappingURL=gcbb.css.map */
