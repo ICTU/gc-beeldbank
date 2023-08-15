@@ -24,7 +24,7 @@ class FileManager {
       ->depth('==0')
       ->sortByName();
 
-    foreach ($directoryList as $key => $directory) {
+    foreach ($directoryList as $directory) {
       $childDir = $pathname . '/' . $directory->getBaseName();
       $directory_basename = $directory->getBasename();
       $directory_config = [];
@@ -35,18 +35,27 @@ class FileManager {
       // Fetch config
       $directory_config_file = $directory->getRealPath() . '/config.json';
 
+
+      if ($directory_basename === 'cmyk') {
+        $directory_config['name'] = 'Voor drukwerk';
+        $directory_config['descr'] = 'Deze bestanden kan je gebruiken voor drukwerk.';
+      }
+
+      if ($directory_basename === 'rgb') {
+        $directory_config['name'] = 'Voor web';
+        $directory_config['descr'] = 'Deze bestanden zijn voor gebruik op het web.';
+      }
+
       if (file_exists($directory_config_file)) {
         $directory_config = json_decode(file_get_contents($directory_config_file), TRUE);
       }
-      elseif ($directory_basename === 'cmyk') {
-        $directory_config['descr'] = 'Deze bestanden kan je gebruiken voor drukwerk.';
-      } elseif (!(file_exists($directory_config_file))) {
+      elseif (!(file_exists($directory_config_file))) {
         $config_path = $pathname . '/config.json';
 
-        if(file_exists($config_path)){
+        if (file_exists($config_path)) {
           $directory_config = json_decode(file_get_contents($pathname . '/config.json'), TRUE);
 
-          if(isset($directory_config['subdirs'][$directory_basename])) {
+          if (isset($directory_config['subdirs'][$directory_basename])) {
             $subdir_info = $directory_config['subdirs'][$directory_basename];
 
             $directory_config['name'] = !empty($subdir_info['subdir_name']) ? $subdir_info['subdir_name'] : $directory_basename;
@@ -55,21 +64,19 @@ class FileManager {
 
           // There isn't a subdirectory name to use
           // and we don't want to use the name from the root config
-          if($level >= 1 && !isset($directory_config['subdirs'][$directory_basename])) {
-            $directory_config['name'] = $directory_basename;
+          if ($level >= 1 && !isset($directory_config['subdirs'][$directory_basename])) {
+            $directory_config = [
+              'name' => $directory_basename,
+              'descr' => '',
+            ];
           }
         }
       }
 
-      // Set directory info
-      if ($directory_basename === 'cmyk') {
-        $directory_config['descr'] = 'Deze bestanden kan je gebruiken voor drukwerk.';
-      }
-
       $directory_info = [
-         'name' => !empty($directory_config['name']) ? $directory_config['name'] : $directory_basename,
-         'descr' => !empty($directory_config['descr']) ? $directory_config['descr'] : '',
-         'display_name' => !empty($directory_config['display_name']) ? $directory_config['display_name'] : '',
+        'name' => !empty($directory_config['name']) ? $directory_config['name'] : $directory_basename,
+        'descr' => !empty($directory_config['descr']) ? $directory_config['descr'] : '',
+        'display_name' => !empty($directory_config['display_name']) ? $directory_config['display_name'] : '',
       ];
 
       // Fetch all files

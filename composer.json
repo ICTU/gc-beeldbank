@@ -17,7 +17,9 @@
     "symfony/filesystem": "^5.4",
     "intervention/image": "^2.0",
     "symfony/var-dumper": "^5.4",
-    "ext-json": "*"
+    "ext-json": "*",
+    "spatie/pdf-to-image": "^1.2",
+    "ext-imagick": "*"
   },
   "autoload": {
     "psr-4": {

@@ -1,0 +1,10 @@
+{
+  "name": "Gebruiker Centraal Huisstijlhandboek",
+  "files": {
+    "gc-huisstijl-handboek.pdf": {
+      "name": "Huisstijl handboek",
+      "descr": "Ga je aan de slag met de huisstijl? Kijk eerst dit handboek door en check of de versie actueel is.",
+      "version": "0.5"
+    }
+  }
+}

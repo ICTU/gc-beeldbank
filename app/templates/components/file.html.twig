@@ -16,9 +16,17 @@
 
       <img src="{{ path }}" alt="{{ file.name }}" class="file__image">
 
-    {% elseif file.type == 'eps' or file.type == 'pdf' %}
+    {% elseif file.type == 'eps' %}
       <span class="file__type">{{ file.type }}</span>
       <span class="file__type-descr">Voor drukwerk</span>
+
+    {% elseif file.type == 'pdf' %}
+      {% if file.preview_path %}
+        <img src="{{ file.preview_path }}" alt="{{ file.name }}" class="file__image">
+      {% else %}
+        <span class="file__type">{{ file.type }}</span>
+        <span class="file__type-descr">Voor drukwerk</span>
+      {% endif %}
     {% elseif file.type == 'ai' %}
       <span class="file__type">{{ file.type }}</span>
       <span class="file__type-descr">Bronbestand van het ontwerp</span>
@@ -45,14 +53,29 @@
           <dt>Formaat:</dt>
           <dd>{{ file.dimensions.width }}px x {{ file.dimensions.height }}px</dd>
         {% endif %}
+
+        {% if file.extension %}
+          <dt>Type:</dt>
+          <dd>{{ file.extension }}</dd>
+        {% endif %}
+
+        {% if file.version %}
+          <dt>Versie:</dt>
+          <dd>{{ file.version }}</dd>
+        {% endif %}
       </dl>
 
       {% if file.typedescr %}
         <span class="file__typedescr">{{ file.typedescr }}</span>
       {% endif %}
+
+      {% if file.extra_desc %}
+        <p class="file__typedescr">{{ file.extra_desc }}</p>
+      {% endif %}
     </div>
   </div>
   </div>
+
 
 {% elseif file.name != 'config.json' %}
 

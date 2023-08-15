@@ -1,0 +1,19 @@
+{
+  "name": "Beeldmerk ",
+  "files": {
+    "gc-gebruiker-centraal-beeldmerk_2023_CMYK.eps": {
+      "name": "Beeldmerk, CMYK",
+      "descr": "Beeldmerk van Gebruiker Centraal logo."
+    },
+    "gc-gebruiker-centraal-beeldmerk_blauw_2023_CMYK.eps": {
+      "name": "Beeldmerk blauwe achtergrond, CMYK",
+      "descr": "Beeldmerk van Gebruiker Centraal logo, maar dan met blauwe achtergrond."
+    },
+    "gc-beeldmerk-blauw.pdf": {
+      "name": "Beeldmerk, blauwe achtergrond"
+    },
+    "gc-beeldmerk.pdf": {
+      "name": "Beeldmerk, groene achtergrond"
+    }
+  }
+}

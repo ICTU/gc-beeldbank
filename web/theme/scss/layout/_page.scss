@@ -68,6 +68,7 @@ html {
 
     aside {
       width: 25%;
+      order: 1;
     }
 
     aside {
@@ -76,6 +77,8 @@ html {
 
     .l-content {
       width: 75%;
+      order: 2;
+      padding-bottom: 10rem;
     }
   }
 
@@ -96,7 +99,19 @@ html {
 
     .l-content {
       width: 85%;
+      padding-bottom: 12rem;
     }
   }
 }
 
+.l-page-footer-wrapper {
+  @include ho-padding;
+
+  background: $gc-dark-blue;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+
+  a {
+    color: $white;
+  }
+}
