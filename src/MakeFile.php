@@ -86,6 +86,7 @@ class MakeFile {
         break;
       case 'eps':
         $file['type'] = 'eps';
+        $file['extension'] = 'eps';
         $file['typedescr'] = 'Te gebruiken voor drukwerk';
         break;
       case 'pdf':
