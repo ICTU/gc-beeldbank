@@ -75,9 +75,10 @@
 
   img {
     display: block;
-    max-width: 100%;
-    height: auto;
+    width: 90%;
+    height: 120px;
     align-self: center;
+    object-fit: contain;
   }
 
   span {
@@ -89,11 +90,15 @@
   }
 
   [data-type='pdf'] & {
-    background: lighten($gc-blue-xlight, 10%);
+    background: #BFD3D8;
 
     .file__type {
       color: $gc-blue-xlight;
     }
+  }
+
+  [data-type='img'] & {
+    background: $gc-pantybrown;
   }
 
   [data-type='ai'] & {

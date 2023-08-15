@@ -1,0 +1,27 @@
+{
+  "name": "Logo ",
+  "descr": "CMYK bestanden die gebruikt kunnen worden voor drukwerk.",
+  "files": {
+    "gc-logo-liggend.pdf": {
+      "name": "Logo liggend, groen beeldmerk"
+    },
+    "gc-logo-liggend_wit_beeldmerk_blauw.pdf": {
+      "name": "Logo liggend, blauw beeldmerk, witte tekst"
+    },
+    "gc-logo-liggend_beeldmerk_blauw.pdf": {
+      "name": "Logo liggend, blauw beeldmerk"
+    },
+    "gc-logo-staand.pdf": {
+      "name": "Logo staand, groen beeldmerk"
+    },
+    "gc-logo-staand_beeldmerk_blauw.pdf": {
+      "name": "Logo staand, blauw beeldmerk"
+    },
+    "gc-logo_staand_wit.pdf": {
+      "name": "Logo staand, groen beeldmerk, witte tekst"
+    },
+    "gc-logo_staand_wit_beeldmerk_blauw.pdf": {
+      "name": "Logo staand, blauw beeldmerk, witte tekst"
+    }
+  }
+}

@@ -6,6 +6,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 use Symfony\Component\Filesystem\Filesystem;
 
 trait ImageTrait {
+
   /**
    * Scale a given image
    *
@@ -15,12 +16,11 @@ trait ImageTrait {
    * @return array with thumb data
    */
 
-  public static function ScaleImage(string $directory_path, \SplFileInfo $file ) {
+  public static function ScaleImage(string $directory_path, \SplFileInfo $file) {
     $filesystem = new Filesystem();
-    $thumb = [];
 
     $thumbnail_path = $directory_path . '/thumbs';
-    $thumbnail_filepath = $thumbnail_path. '/' . $file->getBaseName();
+    $thumbnail_filepath = $thumbnail_path . '/' . $file->getBaseName();
 
     if (!$filesystem->exists($thumbnail_path)) {
       $filesystem->mkdir($thumbnail_path);
@@ -34,8 +34,14 @@ trait ImageTrait {
       });
       $thumbImage->save($thumbnail_filepath);
 
-      $thumb['path'] = $thumbnail_filepath;
-      $thumb['filename'] = $file->getBaseName();
+      $thumb = [
+        'path' => $thumbnail_filepath,
+        'filename' => $file->getBaseName(),
+      ];
+    }
+
+    if(empty($thumb)){
+      return [];
     }
 
     return $thumb;

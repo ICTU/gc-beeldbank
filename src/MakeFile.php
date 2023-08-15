@@ -2,14 +2,15 @@
 
 namespace App;
 
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
-
+use Imagick;
+use ImagickDraw;
 
 class MakeFile {
 
   use FileSizeTrait;
   use ImageTrait;
+
 
   /**
    * Return a file array
@@ -27,11 +28,12 @@ class MakeFile {
     $fileName = $basefile->getBaseName();
     $file['name'] = $fileName;
     $file['path'] = $directory_path . '/' . $fileName;
-    $file['size'] = FileSizeTrait::HumanReadableBytes($basefile->getSize());
+    $file['size'] = self::HumanReadableBytes($basefile->getSize());
 
     if (!empty($directory_config['files']) && array_key_exists($fileName, $directory_config['files'])) {
       $file['name'] = $directory_config['files'][$fileName]['name'] ?? $directory_config['files'][$fileName];
       $file['descr'] = $directory_config['files'][$fileName]['descr'] ?? '';
+      $file['version'] = $directory_config['files'][$fileName]['version'] ?? '';
     }
 
     // Add info based on description
@@ -79,6 +81,7 @@ class MakeFile {
         break;
       case 'svg':
         $file['type'] = 'img';
+        $file['extension'] = 'svg';
         $file['typedescr'] = 'Te gebruiken voor web, vectorbestand';
         break;
       case 'eps':
@@ -86,10 +89,46 @@ class MakeFile {
         $file['typedescr'] = 'Te gebruiken voor drukwerk';
         break;
       case 'pdf':
+        $file['color_space'] = '';
+        $thumbdir = $directory_path . '/thumbs';
+        $file_ext = 'jpeg';
+
+        if (!file_exists($thumbdir)) {
+          mkdir($thumbdir);
+        }
+
+        $file_basename = explode('.', $basefile->getFilename());
+        $preview_filename = $file_basename[0] . '-preview.'. $file_ext;
+        $preview_path = $thumbdir . '/' . $preview_filename;
+        $thumbnailWidth = 300;
+
+        if (!(file_exists($preview_path))) {
+          $pdf = $file['path'] . "[0]";
+
+            $img = new Imagick();
+            $img->setColorspace(Imagick::COLORSPACE_SRGB);
+            $img->setFirstIterator();
+            $img->readImage($pdf);
+
+            $img->setImageBackgroundColor('#BFD3D8');
+            $img->setImageAlphaChannel(Imagick::ALPHACHANNEL_REMOVE);
+            $img = $img->mergeImageLayers(Imagick::LAYERMETHOD_FLATTEN);
+
+            $newHeight = (int) ($thumbnailWidth * $img->getImageHeight() / $img->getImageWidth());
+            $img->thumbnailImage($thumbnailWidth, $newHeight, TRUE, FALSE, FALSE);
+
+            $img->writeImage($preview_path);
+            $img->clear();
+            $img->destroy();
+        }
+
         $file['type'] = 'pdf';
+        $file['extension'] = 'pdf';
         $file['typedescr'] = 'Te gebruiken voor of als drukwerk';
+        $file['preview_path'] = file_exists($preview_path) ? $preview_path : '';
         break;
-      case 'ai':
+      case
+      'ai':
         $file['type'] = 'ai';
         $file['typedescr'] = 'Bronbestand voor ontwerpen';
         break;
@@ -117,7 +156,7 @@ class MakeFile {
                     foreach ($reusableFiles as $reusableFile) {
                       $reusableFilePath = $reusableFile->getPath() . '/' . $reusableFile->getBaseName();
 
-                      if(file_exists($reusableFilePath)) {
+                      if (file_exists($reusableFilePath)) {
                         $data = json_decode(file_get_contents($reusableFilePath), TRUE);
                         $file['data'] = $data;
                       }
@@ -132,6 +171,7 @@ class MakeFile {
     }
 
     if (!file_exists($file['path'])) {
+
       return [];
     }
 
